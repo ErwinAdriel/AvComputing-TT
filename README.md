@@ -40,7 +40,8 @@ npm install
 ```bash
 npm run dev
 ```
-🌐 Deploy Este proyecto está desplegado en Netlify: 
+## 🌐 Deploy 
+Este proyecto está desplegado en Netlify: https://avcomputing.netlify.app/
 
 ## Autores ✒️
 * Quispe Guerrero Erwin.
