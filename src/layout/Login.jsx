@@ -5,25 +5,25 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const { setIsAuth } = useContext(CartContext);
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState({});
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     let validationErrors = {};
 
-    if (!email) validationErrors.email = "Email es requerido";
-    if (!password) validationErrors.password = "La contraseña es requerida";
+    if (!email) validationErrors.email = 'Email es requerido';
+    if (!password) validationErrors.password = 'La password es requerida';
 
     if (Object.keys(validationErrors).length > 0) {
-      setError(validationErrors);
+      setErrors(validationErrors);
       return;
     }
 
     try {
-      const res = await fetch("data/users.json");
+      const res = await fetch('data/users.json');
       const users = await res.json();
 
       const foundUser = users.find(
@@ -31,7 +31,8 @@ const Login = () => {
       );
 
       if (!foundUser) {
-        setError({ email: "credenciales inválidas" });
+        setErrors({ email: 'credenciales inválidas' });
+        console.log(errors);
       } else {
         console.log(foundUser.role);
         if (foundUser.role === 'admin') {
@@ -42,7 +43,8 @@ const Login = () => {
         }
       }
     } catch (err) {
-      setError({ email: "Algo salio mal. Por favor, intentelo mas tarde" });
+      console.log(err);
+      setErrors({ email: 'Algo salio mal. Por favor, intentelo mas tarde' });
     }
   };
 
@@ -71,10 +73,14 @@ const Login = () => {
                 id="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                class="placeholder-gray-400 bg-gray-50 border border-gray-300 block w-full p-3"
-                placeholder="name@company.com"
-                required=""
+                class={`placeholder-gray-400 ${errors.email ? 'border-red-800' : 'border-gray-300'} bg-gray-50 border block w-full p-3`}
+                placeholder="name@example.com"
               />
+              {errors.email && (
+                <div className="text-red-800 font-normal">
+                  <p>{errors.email}</p>
+                </div>
+              )}
             </div>
             <div>
               <label
@@ -90,9 +96,13 @@ const Login = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 placeholder="••••••••"
-                class="placeholder-gray-400 bg-gray-50 border border-gray-300 block w-full p-3"
-                required=""
+                class={`placeholder-gray-400 bg-gray-50 border ${errors.password ? 'border-red-800' : 'border-gray-300'} block w-full p-3`}
               />
+              {errors.password && (
+                <div className="text-red-800 font-normal">
+                  <p>{errors.password}</p>
+                </div>
+              )}
             </div>
             <div class="flex items-center justify-between">
               <div class="flex items-start">

@@ -25,7 +25,7 @@ export const CartProvider = ({ children }) => {
         setTimeout(() => {
           setCarga(false);
           setError(true);
-        }, 2000);
+        });
       });
   }, []);
 
@@ -120,7 +120,8 @@ export const CartProvider = ({ children }) => {
         eliminarCant,
         agregarCant,
         vaciarCart,
-        isAuthenticated
+        isAuthenticated, 
+        setIsAuth
       }}
     >
       {children}
