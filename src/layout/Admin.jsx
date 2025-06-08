@@ -33,7 +33,7 @@ export default function Admin() {
       ) : (
         <div>
           <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-4xl font-semibold text-gray-900 sm:text-5xl">
+            <h2 className="text-3xl font-semibold text-gray-900 sm:text-5xl">
               Sistema de autogestion
             </h2>
           </div>
