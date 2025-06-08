@@ -1,7 +1,8 @@
 import { FaRegUser } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
-import { IoCartOutline, IoClose } from "react-icons/io5";
+import { IoCartOutline } from "react-icons/io5";
 import { useContext, useState } from "react";
+import { IoMdExit } from "react-icons/io";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
@@ -23,16 +24,24 @@ export default function Nav({
   ];
   return (
     <div>
-      <div class="w-full h-[86px] bg-white lg:block md:px-20 px-5">
+      <div
+        class={`w-full h-[86px] ${
+          isAuthenticated ? "bg-slate-900 text-white" : "bg-white text-black"
+        } lg:block md:px-20 px-5`}
+      >
         <div class="container-x mx-auto h-full">
           <div class="relative h-full">
             <div class="flex justify-between items-center h-full">
-              <Link to={"/"}>
+              <Link to={`${isAuthenticated ? "/admin" : "/"}`}>
                 <div class="text-3xl font-bold">
                   <span>AvComputing</span>
                 </div>
               </Link>
-              <div class={`${isAuthenticated ? 'hidden' : 'md:flex hidden'} w-[517px] h-[44px] border border-slate-400`}>
+              <div
+                class={`${
+                  isAuthenticated ? "hidden" : "md:flex hidden"
+                } w-[517px] h-[44px] border border-slate-400`}
+              >
                 <div class="w-full h-full flex items-center bg-white">
                   <form action="#" class="h-full w-full">
                     <input
@@ -46,68 +55,89 @@ export default function Nav({
                   <button>Buscar</button>
                 </div>
               </div>
-              <div class="flex space-x-3 items-center">
-                <div class="md:flex text-3xl hidden">
-                  <span>
-                    <MdFavoriteBorder />
-                  </span>
-                </div>
-                <div class="flex text-3xl">
-                  <button
-                    class="relative cursor-pointer"
-                    type="button"
-                    onClick={() => setCartOpen(!isCartOpen)}
-                  >
-                    <span>
-                      <IoCartOutline />
-                    </span>
-                    <span class="w-[18px] h-[18px] rounded-full absolute -top-2 -right-2 flex justify-center items-center text-[9px] bg-blue-700 text-white">
-                      0
-                    </span>
-                  </button>
-                  <Cart
-                    cartItems={cartItems}
-                    vacio={vacio}
-                    vaciarItems={vaciarItems}
-                    eliminarItem={eliminarItem}
-                    agregarItem={agregarItem}
-                    isOpen={isCartOpen}
-                    onClose={() => setCartOpen(false)}
-                  />
-                </div>
-                <Link to={"/login"}>
+              {isAuthenticated ? (
+                <div class="flex space-x-3 items-center">
                   <div class="flex text-2xl">
                     <span>
                       <FaRegUser />
                     </span>
                   </div>
-                </Link>
-              </div>
+                  <Link to={"/login"}>
+                    <div class="flex text-3xl">
+                      <span>
+                        <IoMdExit />
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              ) : (
+                <div class="flex space-x-3 items-center">
+                  <div class="md:flex text-3xl hidden">
+                    <span>
+                      <MdFavoriteBorder />
+                    </span>
+                  </div>
+                  <div class="flex text-3xl">
+                    <button
+                      class="relative cursor-pointer"
+                      type="button"
+                      onClick={() => setCartOpen(!isCartOpen)}
+                    >
+                      <span>
+                        <IoCartOutline />
+                      </span>
+                      <span class="w-[18px] h-[18px] rounded-full absolute -top-2 -right-2 flex justify-center items-center text-[9px] bg-blue-700 text-white">
+                        0
+                      </span>
+                    </button>
+                    <Cart
+                      cartItems={cartItems}
+                      vacio={vacio}
+                      vaciarItems={vaciarItems}
+                      eliminarItem={eliminarItem}
+                      agregarItem={agregarItem}
+                      isOpen={isCartOpen}
+                      onClose={() => setCartOpen(false)}
+                    />
+                  </div>
+                  <Link to={"/login"}>
+                    <div class="flex text-2xl">
+                      <span>
+                        <FaRegUser />
+                      </span>
+                    </div>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         </div>
       </div>
-      <div class="bg-slate-900 w-full h-[60px] relative md:block text-white px-20">
-        <div class="w-full h-full relative">
-          <div class="w-full h-full flex justify-between items-center">
-            <div class="flex xl:space-x-7 space-x-3 items-center">
-              <div class="nav">
-                <ul class="flex">
-                  {Menu.map((menu) => (
-                    <li key={menu.id} class="hover:bg-white hover:text-black">
-                      <Link to={menu.link}>
-                        <div class="px-4 py-[18px] cursor-pointer">
-                          {menu.name}
-                        </div>
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
+      {isAuthenticated ? (
+        ""
+      ) : (
+        <div class="bg-slate-900 w-full h-[60px] relative md:block text-white px-20">
+          <div class="w-full h-full relative">
+            <div class="w-full h-full flex justify-between items-center">
+              <div class="flex xl:space-x-7 space-x-3 items-center">
+                <div class="nav">
+                  <ul class="flex">
+                    {Menu.map((menu) => (
+                      <li key={menu.id} class="hover:bg-white hover:text-black">
+                        <Link to={menu.link}>
+                          <div class="px-4 py-[18px] cursor-pointer">
+                            {menu.name}
+                          </div>
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </div>
   );
 }
