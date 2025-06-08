@@ -3,6 +3,8 @@ import { MdFavoriteBorder } from "react-icons/md";
 import { IoCartOutline } from "react-icons/io5";
 import { useContext, useState } from "react";
 import { IoMdExit } from "react-icons/io";
+import { CiMenuBurger } from "react-icons/ci";
+import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
@@ -14,6 +16,7 @@ export default function Nav({
   eliminarItem,
   agregarItem,
 }) {
+  const [open, setOpen] = useState(false);
   const { isAuthenticated } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
@@ -116,26 +119,48 @@ export default function Nav({
       {isAuthenticated ? (
         ""
       ) : (
-        <div class="bg-slate-900 w-full h-[60px] relative md:block text-white px-20">
-          <div class="w-full h-full relative">
-            <div class="w-full h-full flex justify-between items-center">
-              <div class="flex xl:space-x-7 space-x-3 items-center">
-                <div class="nav">
-                  <ul class="flex">
-                    {Menu.map((menu) => (
-                      <li key={menu.id} class="hover:text-black hover:bg-white">
-                        <Link to={menu.link}>
-                          <div class="px-4 py-[18px] cursor-pointer">
-                            {menu.name}
-                          </div>
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
+        <div class="bg-slate-900 w-full font-medium relative md:block text-white px-5 sm:px-20">
+          <ul class="sm:flex">
+            <div class="text-white w-15 h-15 text-3xl sm:hidden">
+              {open == true ? (
+                <button
+                  onClick={() => setOpen(false)}
+                  class="w-full h-full cursor-pointer"
+                >
+                  <IoClose class="text-4xl" />
+                </button>
+              ) : (
+                <button
+                  onClick={() => setOpen(true)}
+                  class="w-full h-full cursor-pointer"
+                >
+                  <CiMenuBurger class="text-4xl" />
+                </button>
+              )}
             </div>
-          </div>
+            {Menu.map((menu) => (
+              <li
+                key={menu.id}
+                class="hidden sm:flex hover:text-black hover:bg-white"
+              >
+                <Link to={menu.link}>
+                  <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
+                </Link>
+              </li>
+            ))}
+            {open == false
+              ? ""
+              : Menu.map((menu) => (
+                  <li
+                    key={menu.id}
+                    class=" sm:hidden hover:text-black hover:bg-white"
+                  >
+                    <Link to={menu.link}>
+                      <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
+                    </Link>
+                  </li>
+                ))}
+          </ul>
         </div>
       )}
     </div>
