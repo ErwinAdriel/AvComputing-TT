@@ -17,7 +17,7 @@ export default function Nav({
   agregarItem,
 }) {
   const [open, setOpen] = useState(false);
-  const { isAuthenticated } = useContext(CartContext);
+  const { isAuthenticated, setIsAuth } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
   const Menu = [
@@ -67,9 +67,11 @@ export default function Nav({
                   </div>
                   <Link to={"/login"}>
                     <div class="flex text-3xl">
-                      <span>
-                        <IoMdExit />
-                      </span>
+                      <button class="cursor-pointer" onClick={()=>setIsAuth(false)}>
+                        <span>
+                          <IoMdExit  />
+                        </span>
+                      </button>
                     </div>
                   </Link>
                 </div>
