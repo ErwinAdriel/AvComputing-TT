@@ -1,9 +1,10 @@
 import { FaRegUser } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoCartOutline, IoClose } from "react-icons/io5";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
+import { CartContext } from "../context/CartContext";
 
 export default function Nav({
   cartItems,
@@ -12,6 +13,7 @@ export default function Nav({
   eliminarItem,
   agregarItem,
 }) {
+  const { isAuthenticated } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
   const Menu = [
@@ -30,7 +32,7 @@ export default function Nav({
                   <span>AvComputing</span>
                 </div>
               </Link>
-              <div class="md:flex w-[517px] h-[44px] border border-slate-400 hidden">
+              <div class={`${isAuthenticated ? 'hidden' : 'md:flex hidden'} w-[517px] h-[44px] border border-slate-400`}>
                 <div class="w-full h-full flex items-center bg-white">
                   <form action="#" class="h-full w-full">
                     <input
