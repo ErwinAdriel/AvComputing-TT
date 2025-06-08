@@ -123,7 +123,7 @@ export default function Nav({
                 <div class="nav">
                   <ul class="flex">
                     {Menu.map((menu) => (
-                      <li key={menu.id} class="hover:bg-white hover:text-black">
+                      <li key={menu.id} class="hover:text-black hover:bg-white">
                         <Link to={menu.link}>
                           <div class="px-4 py-[18px] cursor-pointer">
                             {menu.name}

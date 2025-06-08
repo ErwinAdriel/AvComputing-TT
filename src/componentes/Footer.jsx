@@ -13,7 +13,7 @@ export default function Footer() {
   const { isAuthenticated } = useContext(CartContext);
 
   return (
-    <footer class="bg-slate-900 relative text-white print:hidden">
+    <footer class="bg-slate-900 text-white print:hidden">
       <div class={`${isAuthenticated ? 'hidden' : ''} pt-15 px-20`}>
         <div class="w-full flex flex-col items-center mb-[50px]">
           <div class="mb-[40px]">
