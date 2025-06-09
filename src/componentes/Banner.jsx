@@ -34,13 +34,10 @@ export default function Banner(){
     };
 
     return(
-        <div class="w-full xl:h-[400px] h-[500px]">
-            <div class="w-full h-full">
-                <div class="xl:h-full mb-20 xl:mb-0 w-full relative">
-                    <div class="w-full">
-                        <div class="item w-full xl:h-[400px] h-[500px]">
-                            <div class="bg-cover bg-center bg-no-repeat h-full w-full duration-500" style={{backgroundImage: `url(${slides[actualIndex].url})`}}>
-                            </div>
+        <div class="w-full xl:h-[400px] h-45">
+                <div class="xl:h-full w-full relative">
+                    <div class="item w-full xl:h-[400px] h-45">
+                        <div class="bg-cover bg-center bg-no-repeat h-full w-full duration-500" style={{backgroundImage: `url(${slides[actualIndex].url})`}} >
                         </div>
                     </div>
                     <div class="absolute left-0 top-0 w-full h-full items-center justify-between flex">
@@ -53,7 +50,6 @@ export default function Banner(){
                         ))}
                     </div>
                 </div>
-            </div>
         </div>
     )
 }
