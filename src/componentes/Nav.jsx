@@ -143,7 +143,7 @@ export default function Nav({
             {Menu.map((menu) => (
               <li
                 key={menu.id}
-                class="hidden sm:flex hover:text-black hover:bg-white"
+                class="hidden sm:flex duration-300 ease-in-out hover:text-black hover:bg-white"
               >
                 <Link to={menu.link}>
                   <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
@@ -155,7 +155,7 @@ export default function Nav({
               : Menu.map((menu) => (
                   <li
                     key={menu.id}
-                    class=" sm:hidden hover:text-black hover:bg-white"
+                    class="sm:hidden duration-100 hover:text-black hover:bg-white"
                   >
                     <Link to={menu.link}>
                       <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
