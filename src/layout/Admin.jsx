@@ -4,6 +4,7 @@ import { MdDelete } from "react-icons/md";
 import { RiAddFill } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
 import loading from "../img/loading.gif";
+import AgregarProducto from "../componentes/AgregarProducto";
 
 export default function Admin() {
   const [products, setProducts] = useState([]);
