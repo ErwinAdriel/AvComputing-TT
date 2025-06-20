@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import { useContext } from "react";
 import { MdDelete } from "react-icons/md";
 import { IoAddCircleSharp } from "react-icons/io5";
 import { IoMdClose } from "react-icons/io";
+import { CartContext } from "../context/CartContext";
 
-export default function Cart({isOpen, onClose, cartItems, vacio, vaciarItems, eliminarItem, agregarItem}){
-
+export default function Cart({isOpen, onClose}){
+  const {cart, vaciarCart, eliminarCant, vacio, agregarCant} = useContext(CartContext);
     return(
         <div class={`z-10 ${isOpen ? 'relative' : 'hidden'}`}>
           <div class="fixed inset-0 bg-gray-500/75 "></div>
@@ -23,10 +24,10 @@ export default function Cart({isOpen, onClose, cartItems, vacio, vaciarItems, el
 
                     <div class="mt-8">
                       <div class="flow-root">
-                        {cartItems.length === 0 ? (<p>El carrito esta vacio</p>) :
+                        {cart.length === 0 ? (<p>El carrito esta vacio</p>) :
                           (
                               <ul class="-my-6 divide-y divide-gray-200">
-                                {cartItems.map((item, index) => (
+                                {cart.map((item, index) => (
                                   <li key={index} class="flex py-6">
                                     <div style={{backgroundImage: `url(${item.img})`}} class="bg-cover bg-center bg-no-repeat size-30 rounded-md border border-gray-200">
                                     </div>
@@ -43,8 +44,8 @@ export default function Cart({isOpen, onClose, cartItems, vacio, vaciarItems, el
                                       <div class="flex flex-1 items-end justify-between text-sm">
                                         <p class="text-gray-500">Unidad: {item.cantidad}</p>
                                         <div class="flex">
-                                          <button type="button" onClick={() => agregarItem(item)} class="cursor-pointer font-medium text-2xl text-green-500 hover:text-green-900"><IoAddCircleSharp /></button>
-                                          <button type="button" onClick={() => eliminarItem(item)} class="cursor-pointer font-medium text-2xl text-red-500 hover:text-red-900"><MdDelete /></button>    
+                                          <button type="button" onClick={() => agregarCant(item)} class="cursor-pointer font-medium text-2xl text-green-500 hover:text-green-900"><IoAddCircleSharp /></button>
+                                          <button type="button" onClick={() => eliminarCant(item)} class="cursor-pointer font-medium text-2xl text-red-500 hover:text-red-900"><MdDelete /></button>    
                                         </div>
                                       </div>
                                     </div>
@@ -62,7 +63,7 @@ export default function Cart({isOpen, onClose, cartItems, vacio, vaciarItems, el
                       <p>$ 1000</p>
                     </div>
                     <div class={`mt-6 w-full justify-center space-x-6 ${vacio ? 'hidden' : 'flex'}`}>
-                      <button onClick={() => vaciarItems(cartItems)} class="flex items-center cursor-pointer rounded-md border border-transparent bg-red-900 px-8 py-3 text-base font-medium text-white  hover:bg-red-500">Vaciar</button>
+                      <button onClick={() => vaciarCart(cart)} class="flex items-center cursor-pointer rounded-md border border-transparent bg-red-900 px-8 py-3 text-base font-medium text-white  hover:bg-red-500">Vaciar</button>
                       <button class="flex items-center cursor-pointer rounded-md border border-transparent bg-slate-900 px-8 py-3 text-base font-medium text-white hover:bg-slate-500">Comprar</button>
                     </div>
                   </div>
