@@ -12,8 +12,8 @@ export default function Contacto(){
         </div>
         <div class='w-full mt-8 lg:flex lg:space-x-[30px]'>
             <div class='lg:w-1/2 w-full'>
-                <div class='xl:flex xl:space-x-[30px] mb-[30px]'>
-                    <div class='cursor-pointer xl:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black p-5 shadow-xl/20'>
+                <div class='md:flex md:space-x-[30px] mb-[30px]'>
+                    <div class='cursor-pointer md:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black p-5 shadow-xl/20'>
                         <div class='flex justify-center mb-3'>
                             <FaPhoneVolume class='text-2xl' />
                         </div>
@@ -21,7 +21,7 @@ export default function Contacto(){
                         <p class='text-center text-base'>+(549) 11 2165 6458</p>
                         <p class='text-center text-base'>+(549) 11 4960 7280</p>
                     </div>
-                    <div class='cursor-pointer xl:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black mt-8 lg:mt-0 shadow-xl/20'>
+                    <div class='cursor-pointer md:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black mt-8 md:mt-0 shadow-xl/20'>
                         <div class='flex justify-center mb-3'>
                             <IoMdMail class='text-2xl'/>
                         </div>
