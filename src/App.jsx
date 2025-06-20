@@ -31,13 +31,7 @@ function App() {
   return (
     <>
       <Router>
-        <Header
-          cartItems={cart}
-          vaciarItems={vaciarCart}
-          eliminarItem={eliminarCant}
-          vacio={vacio}
-          agregarItem={agregarCant}
-        />
+        <Header/>
         <Routes>
           <Route path="*" element={<Error />} />
           <Route
