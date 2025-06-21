@@ -1,14 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { CartContext } from "../context/CartContext";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const { setIsAuth } = useContext(CartContext);
-
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+
+  useEffect(()=>{
+    const isAuthenticated = localStorage.getItem('isAuth') === 'true';
+    if(isAuthenticated){
+      setIsAuth(true);
+      navigate('admin');
+    }
+  },[]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();

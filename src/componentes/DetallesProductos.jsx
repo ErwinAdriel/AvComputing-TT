@@ -1,12 +1,13 @@
-import React from "react";
+import { useContext } from "react";
 import { useParams } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
 import Error from "../layout/Error404";
+import { CartContext } from "../context/CartContext";
 
-export default function DetallesProductos({ products, addToCart }) {
+export default function DetallesProductos() {
+  const {products, handleAddToCart} = useContext(CartContext);
   const { id } = useParams();
   const product = products.find((producto) => producto.id == id);
-  console.log(product);
 
   return (
     <>
@@ -50,7 +51,7 @@ export default function DetallesProductos({ products, addToCart }) {
                   like Aldus PageMaker including versions of Lorem Ipsum.
                 </span>
               </div>
-              <button onClick={() => addToCart(product)} className="mt-10 border w-full h-[50px] cursor-pointer">
+              <button onClick={() => handleAddToCart(product)} className="mt-10 border w-full h-[50px] cursor-pointer">
                 <div className="flex space-x-2 bg-black text-white items-center justify-center text-sm font-semibold h-[50px]">
                   <span class="text-2xl">
                     <IoCartOutline />

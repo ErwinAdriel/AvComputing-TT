@@ -15,18 +15,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { CartContext } from "./context/CartContext";
 
 function App() {
-  const {
-    cart,
-    products,
-    carga,
-    vacio,
-    error,
-    handleAddToCart,
-    eliminarCant,
-    agregarCant,
-    vaciarCart,
-    isAuthenticated
-  } = useContext(CartContext);
+  const { isAuthenticated } = useContext(CartContext);
 
   return (
     <>
@@ -37,25 +26,19 @@ function App() {
           <Route
             path="/"
             element={
-              <Home
-                products={products}
-                handleAddToCart={handleAddToCart}
-              />
+              <Home />
             }
           />
           <Route
             path="/productos"
             element={
-              <GaleriadeProductos products={products} />
+              <GaleriadeProductos />
             }
           />
           <Route
             path="/productos/:id"
             element={
-              <DetallesProductos
-                products={products}
-                addToCart={handleAddToCart}
-              />
+              <DetallesProductos />
             }
           />
           <Route path="/nosotros" element={<Nosotros />} />

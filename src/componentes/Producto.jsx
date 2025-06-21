@@ -1,8 +1,11 @@
-import React from "react";
+import { useContext } from "react";
 import { IoCartOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 
-export default function Producto({ product, addToCart }) {
+export default function Producto({ product }) {
+  const {handleAddToCart} = useContext(CartContext);
+
   return (
     <div
       class="w-full h-full overflow-hidden shadow-xl/10"
@@ -27,7 +30,7 @@ export default function Producto({ product, addToCart }) {
               </span>
             </div>
             <button
-              onClick={() => addToCart(product)}
+              onClick={() => handleAddToCart(product)}
               type="button"
             >
               <div class="cursor-pointer flex border-1 bg-black text-white py-3 px-5 sm:px-4 space-x-3 text-md ">
