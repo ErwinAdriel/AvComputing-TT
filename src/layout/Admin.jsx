@@ -9,6 +9,7 @@ import AgregarProducto from "../componentes/AgregarProducto";
 export default function Admin() {
   const [products, setProducts] = useState([]);
   const [carga, setCarga] = useState(true);
+  const [isCartOpen, setCartOpen] = useState(false);
 
   useEffect(() => {
     fetch("/data/data.json")
@@ -39,10 +40,18 @@ export default function Admin() {
             </h2>
           </div>
           <div className="flex justify-between mt-5">
-            <div className="flex px-4 py-3 cursor-pointer text-normal font-medium bg-blue-700 text-white hover:bg-blue-900">
-              <RiAddFill className="text-2xl my-auto" />
-              <span className="lg:flex hidden">Agregar</span>
+            <div className="bg-blue-700 text-white hover:bg-blue-900">
+              <button onClick={() => setCartOpen(!isCartOpen)}>
+                <div className="flex px-4 py-3 cursor-pointer text-normal font-medium">
+                  <RiAddFill className="text-2xl my-auto" />
+                  <span className="lg:flex hidden">Agregar</span>
+                </div>
+              </button>
             </div>
+            <AgregarProducto
+              isOpen={isCartOpen}
+              onClose={() => setCartOpen(false)}
+            />
             <div class="md:flex border border-slate-400">
               <div class="w-full h-full flex items-center px-2 bg-white">
                 <form action="#" class="h-full w-full flex">

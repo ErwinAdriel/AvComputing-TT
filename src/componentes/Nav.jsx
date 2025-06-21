@@ -96,11 +96,6 @@ export default function Nav({
                       </span>
                     </button>
                     <Cart
-                      cartItems={cartItems}
-                      vacio={vacio}
-                      vaciarItems={vaciarItems}
-                      eliminarItem={eliminarItem}
-                      agregarItem={agregarItem}
                       isOpen={isCartOpen}
                       onClose={() => setCartOpen(false)}
                     />
