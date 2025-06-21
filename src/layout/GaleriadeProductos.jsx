@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import ProductList from "../componentes/ProductList";
 import loading from "../img/loading.gif";
+import { CartContext } from "../context/CartContext";
 
-export default function GaleriadeProductos({products, cargando}){
+export default function GaleriadeProductos({products}){
+    const {carga}= useContext(CartContext);
     return(
         <>
             {
-                cargando ? <img class="mx-auto" src={loading} alt="loading" /> :
+                carga ? <img class="mx-auto" src={loading} alt="loading" /> :
                 <div>
                     <ProductList products={products}/>
                 </div>

@@ -41,8 +41,8 @@ export default function Banner(){
                         </div>
                     </div>
                     <div class="absolute left-0 top-0 w-full h-full items-center justify-between flex">
-                        <button onClick={beforeSlide} type="button" class="ml-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out">< MdOutlineNavigateBefore/></button>
-                        <button onClick={nextSlide} type="button" class="mr-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out">< MdOutlineNavigateNext /></button>
+                        <button onClick={beforeSlide} type="button" class="ml-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out cursor-pointer">< MdOutlineNavigateBefore/></button>
+                        <button onClick={nextSlide} type="button" class="mr-4 text-5xl text-slate-900 border bg-white hover:border-slate-900 rounded-full hover:text-white hover:bg-slate-900 transition-all duration-300 ease-in-out cursor-pointer">< MdOutlineNavigateNext /></button>
                     </div>
                     <div class="justify-center flex absolute w-full text-white bottom-4">
                         {slides.map((slide, slideIndex) => (

@@ -39,8 +39,6 @@ function App() {
             element={
               <Home
                 products={products}
-                cargando={carga}
-                cart={cart}
                 handleAddToCart={handleAddToCart}
               />
             }
@@ -48,7 +46,7 @@ function App() {
           <Route
             path="/productos"
             element={
-              <GaleriadeProductos products={products} cargando={carga} />
+              <GaleriadeProductos products={products} />
             }
           />
           <Route
