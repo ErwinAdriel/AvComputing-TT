@@ -1,14 +1,31 @@
 import React, { useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-export default function AgregarProducto({ isOpen, onClose }) {
-  const [producto, setProducto] = useState({
+export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
+
+  const [producto, setProductos] = useState({
     name: "",
     price: "",
-    decription: "",
+    description: "",
+    img: "",
   });
-
   const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    const {name, value} = e.target;
+    setProductos({...producto, [name]: value})
+  }
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    onAgregar(producto)
+    setProductos({
+      name: '',
+      price: '',
+      description: '',
+      img: ''
+    })
+  }
 
   return (
     <div class={`${isOpen ? "relative" : "hidden"}`}>
@@ -25,7 +42,7 @@ export default function AgregarProducto({ isOpen, onClose }) {
               <IoMdClose />
             </button>
           </div>
-          <form action="POST">
+          <form onSubmit={handleSubmit} action="POST">
             <div class="grid gap-4 mb-4 sm:grid-cols-2">
               <div>
                 <label
@@ -40,7 +57,10 @@ export default function AgregarProducto({ isOpen, onClose }) {
                   id="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
                   placeholder="Example name"
+                  value={producto.name}
+                  onChange={handleChange}
                 />
+                {errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
               </div>
               <div>
                 <label
@@ -55,7 +75,10 @@ export default function AgregarProducto({ isOpen, onClose }) {
                   id="price"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
                   placeholder="$1222"
+                  value={producto.price}
+                  onChange={handleChange}
                 />
+                {errors.price && <p style={{color: 'red'}}>{errors.price}</p>}
               </div>
               <div>
                 <label
@@ -66,10 +89,14 @@ export default function AgregarProducto({ isOpen, onClose }) {
                 </label>
                 <textarea
                   id="description"
+                  name="description"
                   rows="4"
                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder-gray-400"
                   placeholder="Ingrese una descripcion del producto"
+                  value={producto.description}
+                  onChange={handleChange}
                 ></textarea>
+                {errors.description && <p style={{color: 'red'}}>{errors.description}</p>}
               </div>
               <div>
                 <label
@@ -82,8 +109,11 @@ export default function AgregarProducto({ isOpen, onClose }) {
                   type="file"
                   id="img"
                   name="img"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400"
+                  value={producto.img}
+                  onChange={handleChange}
                 />
+                {errors.img && <p style={{color: 'red'}}>{errors.img}</p>}
               </div>
             </div>
             <button

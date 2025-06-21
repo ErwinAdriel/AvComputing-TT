@@ -28,6 +28,15 @@ export default function Admin() {
         });
       });
   }, []);
+
+  const agregarProducto = async () => {
+    try {
+      
+    } catch (error) {
+      
+    }
+  }
+
   return (
     <div className="bg-white mb-10 py-5 lg:px-20">
       {carga ? (
