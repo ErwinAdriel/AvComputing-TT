@@ -52,6 +52,27 @@ export default function Admin() {
     }
   };
 
+  const eliminarProducto = async (id) => {
+    const confirmar = window.confirm("¿Estas seguro de eliminar el producto?");
+
+    if (confirmar) {
+      try {
+        const respuesta = await fetch(
+          `https://685716ec21f5d3463e54702a.mockapi.io/productos/products/${id}`,
+          {
+            method: "DELETE",
+          }
+        );
+        if (!respuesta.ok) {
+          throw Error("Error al eliminar");
+        }
+        alert("Producto eliminado correctamente");
+      } catch (error) {
+        alert("Hubo un problema al elimnar el producto");
+      }
+    }
+  };
+
   return (
     <div className="bg-white mb-10 py-5 lg:px-20">
       {carga ? (
@@ -137,9 +158,11 @@ export default function Admin() {
                       <div className="text-blue-700 text-xl cursor-pointer hover:text-blue-950">
                         <FaRegEdit />
                       </div>
-                      <div className="text-red-600 text-2xl cursor-pointer hover:text-red-900">
-                        <MdDelete />
-                      </div>
+                      <button onClick={() => eliminarProducto(product.id)}>
+                        <div className="text-red-600 text-2xl cursor-pointer hover:text-red-900">
+                          <MdDelete />
+                        </div>
+                      </button>
                     </td>
                   </tr>
                 ))}

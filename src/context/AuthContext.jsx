@@ -15,7 +15,7 @@ export const AuthProvider = ({ children }) => {
     const isAuthenticated = localStorage.getItem("isAuth") === "true";
     if (isAuthenticated) {
       setIsAuth(true);
-      navigate("admin");
+      navigate("/admin");
     }
   }, []);
 
@@ -44,8 +44,10 @@ export const AuthProvider = ({ children }) => {
         console.log(errors);
       } else {
         console.log(foundUser.role);
+
         if (foundUser.role === "admin") {
           setIsAuth(true);
+          localStorage.setItem("isAuth", true);
           navigate("/admin");
         } else {
           navigate("/");
