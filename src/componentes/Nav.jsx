@@ -9,13 +9,7 @@ import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
 
-export default function Nav({
-  cartItems,
-  vacio,
-  vaciarItems,
-  eliminarItem,
-  agregarItem,
-}) {
+export default function Nav() {
   const [open, setOpen] = useState(false);
   const { isAuthenticated, setIsAuth } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);

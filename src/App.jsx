@@ -11,7 +11,7 @@ import GaleriadeProductos from "./layout/GaleriadeProductos";
 import Admin from "./layout/Admin";
 import Login from "./layout/Login";
 import RutaProtegida from "./auth/RutasProtegidas";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { CartContext } from "./context/CartContext";
 
 function App() {
@@ -19,7 +19,6 @@ function App() {
 
   return (
     <>
-      <Router>
         <Header/>
         <Routes>
           <Route path="*" element={<Error />} />
@@ -54,7 +53,6 @@ function App() {
           <Route path="/login" element={<Login />} />
         </Routes>
         <Footer />
-      </Router>
     </>
   );
 }

@@ -1,60 +1,9 @@
-import React, { useState, useContext, useEffect } from "react";
-import { CartContext } from "../context/CartContext";
-import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
-  const { setIsAuth } = useContext(CartContext);
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
-  const navigate = useNavigate();
-
-  useEffect(()=>{
-    const isAuthenticated = localStorage.getItem('isAuth') === 'true';
-    if(isAuthenticated){
-      setIsAuth(true);
-      navigate('admin');
-    }
-  },[]);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    let validationErrors = {};
-
-    if (!email) validationErrors.email = 'Email es requerido';
-    if (!password) validationErrors.password = 'La password es requerida';
-
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    try {
-      const res = await fetch('data/users.json');
-      const users = await res.json();
-
-      const foundUser = users.find(
-        (user) => user.email === email && user.password === password
-      );
-
-      if (!foundUser) {
-        setErrors({ email: 'credenciales inválidas' });
-        console.log(errors);
-      } else {
-        console.log(foundUser.role);
-        if (foundUser.role === 'admin') {
-          setIsAuth(true);
-          navigate('/admin');
-        } else {
-          navigate('/');
-        }
-      }
-    } catch (err) {
-      console.log(err);
-      setErrors({ email: 'Algo salio mal. Por favor, intentelo mas tarde' });
-    }
-  };
-
+  const {email, setEmail, password, setPassword, errors, handleSubmit} = useContext(AuthContext);
+  
   return (
     <div class="flex flex-col items-center justify-center py-8 mx-auto md:h-screen lg:py-0">
       <div class="w-full bg-white border-gray-300 border md:mt-0 sm:max-w-md xl:p-0 text-black">
