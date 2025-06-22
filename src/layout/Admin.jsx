@@ -29,13 +29,28 @@ export default function Admin() {
       });
   }, []);
 
-  const agregarProducto = async () => {
+  const agregarProducto = async (product) => {
     try {
-      
+      const respuesta = await fetch(
+        "https://685716ec21f5d3463e54702a.mockapi.io/productos/products",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(product),
+        }
+      );
+      if (!respuesta.ok) {
+        throw new Error("Error al agregar producto");
+      }
+      const data = await respuesta.json();
+      setCartOpen(false);
+      alert("Producto agregado correctamente");
     } catch (error) {
-      
+      console.log(error.message);
     }
-  }
+  };
 
   return (
     <div className="bg-white mb-10 py-5 lg:px-20">
@@ -60,6 +75,7 @@ export default function Admin() {
             <AgregarProducto
               isOpen={isCartOpen}
               onClose={() => setCartOpen(false)}
+              onAgregar={agregarProducto}
             />
             <div class="md:flex border border-slate-400">
               <div class="w-full h-full flex items-center px-2 bg-white">
