@@ -8,10 +8,12 @@ import { IoClose } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const { isAuthenticated, setIsAuth } = useContext(CartContext);
+  const { logoutSession } = useContext(AuthContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
   const Menu = [
@@ -59,15 +61,16 @@ export default function Nav() {
                       <FaRegUser />
                     </span>
                   </div>
-                  <Link to={"/login"}>
-                    <div class="flex text-3xl">
-                      <button class="cursor-pointer" onClick={()=>setIsAuth(false)}>
-                        <span>
-                          <IoMdExit  />
-                        </span>
-                      </button>
-                    </div>
-                  </Link>
+                  <div class="flex text-3xl">
+                    <button
+                      class="cursor-pointer"
+                      onClick={logoutSession}
+                    >
+                      <span>
+                        <IoMdExit />
+                      </span>
+                    </button>
+                  </div>
                 </div>
               ) : (
                 <div class="flex space-x-3 items-center">

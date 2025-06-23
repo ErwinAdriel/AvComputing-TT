@@ -59,9 +59,16 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
+  const logoutSession = (e) => {
+    e.preventDefault();
+    setIsAuth(false);
+    localStorage.setItem("isAuth", false);
+    navigate("/login");
+  };
+
   return (
     <AuthContext.Provider
-      value={{ email, setEmail, password, setPassword, errors, handleSubmit }}
+      value={{ email, setEmail, password, setPassword, errors, handleSubmit, logoutSession }}
     >
       {children}
     </AuthContext.Provider>
