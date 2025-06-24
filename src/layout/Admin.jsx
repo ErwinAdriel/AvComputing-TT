@@ -47,8 +47,21 @@ export default function Admin() {
       const data = await respuesta.json();
       setCartOpen(false);
       alert("Producto agregado correctamente");
+      mostrarProductos();
     } catch (error) {
       console.log(error.message);
+    }
+  };
+
+  const mostrarProductos = async () => {
+    try {
+      const respuesta = await fetch(
+        "https://685716ec21f5d3463e54702a.mockapi.io/productos/products"
+      );
+      const data = await respuesta.json();
+      setProducts(data);
+    } catch (error) {
+      console.log("Error al cargar los productos", error);
     }
   };
 
@@ -67,6 +80,7 @@ export default function Admin() {
           throw Error("Error al eliminar");
         }
         alert("Producto eliminado correctamente");
+        mostrarProductos();
       } catch (error) {
         alert("Hubo un problema al elimnar el producto");
       }
