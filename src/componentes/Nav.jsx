@@ -5,7 +5,7 @@ import { useContext, useState } from "react";
 import { IoMdExit } from "react-icons/io";
 import { CiMenuBurger } from "react-icons/ci";
 import { IoClose } from "react-icons/io5";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
@@ -137,9 +137,10 @@ export default function Nav() {
                 key={menu.id}
                 class="hidden sm:flex duration-300 ease-in-out hover:text-black hover:bg-white"
               >
-                <Link to={menu.link}>
+                <NavLink to={menu.link} className={({ isActive }) =>
+                  isActive ? "text-black bg-white" : ""}>
                   <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
-                </Link>
+                </NavLink>
               </li>
             ))}
             {open == false
@@ -149,9 +150,10 @@ export default function Nav() {
                     key={menu.id}
                     class="sm:hidden duration-100 hover:text-black hover:bg-white"
                   >
-                    <Link to={menu.link}>
+                    <NavLink to={menu.link} className={({ isActive }) =>
+                  isActive ? "text-red-600" : ""}>
                       <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
-                    </Link>
+                    </NavLink>
                   </li>
                 ))}
           </ul>
