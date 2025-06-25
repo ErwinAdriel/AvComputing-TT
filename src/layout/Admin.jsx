@@ -98,27 +98,33 @@ export default function Admin() {
   };
 
   const editarProducto = async (producto) => {
-    try {
-      const respuesta = await fetch(
-        `https://685716ec21f5d3463e54702a.mockapi.io/productos/products/${producto.id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(producto),
+    const confirmar = window.confirm(
+      "¿Estas seguro de actualizar el producto?"
+    );
+
+    if (confirmar) {
+      try {
+        const respuesta = await fetch(
+          `https://685716ec21f5d3463e54702a.mockapi.io/productos/products/${producto.id}`,
+          {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(producto),
+          }
+        );
+        if (!respuesta.ok) {
+          throw Error("Error al actualizar el producto");
         }
-      );
-      if (!respuesta.ok) {
-        throw Error("Error al actualizar el producto");
+        const data = await respuesta.json();
+        alert("Producto actualizado correctamente");
+        setFormEditOpen(false);
+        setSeleccionado(null);
+        mostrarProductos();
+      } catch (error) {
+        console.log("Hubo un error al editar", error);
       }
-      const data = await respuesta.json();
-      alert("Producto actualizado correctamente");
-      setFormEditOpen(false);
-      setSeleccionado(null);
-      mostrarProductos();
-    } catch (error) {
-      console.log("Hubo un error al editar", error);
     }
   };
 
@@ -160,7 +166,7 @@ export default function Admin() {
               </div>
             </div>
           </div>
-          <div className=" overflow-x-auto">
+          <div className="overflow-x-auto">
             <table className="w-full text-sm text-left text-gray-500 mt-5">
               <thead className="text-sm text-gray-700 uppercase bg-gray-50">
                 <tr>
@@ -176,7 +182,7 @@ export default function Admin() {
                   <th scope="col" className="px-4 py-4">
                     Descripcion
                   </th>
-                  <th scope="col" className="px-4 py-4">
+                  <th scope="col" className="pr-20 py-4">
                     Precio
                   </th>
                   <th scope="col" className="px-4 py-4">
@@ -202,7 +208,7 @@ export default function Admin() {
                       />
                     </td>
                     <td className="px-4 py-3">{product.description}</td>
-                    <td className="px-4 py-3">$ {product.price}</td>
+                    <td className="py-3">$ {product.price}</td>
                     <td className="px-4 py-5 flex items-center space-x-3">
                       <button
                         onClick={() => {

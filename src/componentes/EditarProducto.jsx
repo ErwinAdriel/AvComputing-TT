@@ -5,12 +5,12 @@ export default function EditarProducto({
   isOpen,
   onClose,
   productoSeleccionado,
-  onActualizar
+  onActualizar,
 }) {
   const [producto, setProducto] = useState(productoSeleccionado);
-  useEffect(()=>{
-    setProducto(productoSeleccionado)
-  }, [productoSeleccionado])
+  useEffect(() => {
+    setProducto(productoSeleccionado);
+  }, [productoSeleccionado]);
 
   const [errors, setErrors] = useState({});
 
@@ -27,7 +27,7 @@ export default function EditarProducto({
   return (
     <div class={`${isOpen ? "relative" : "hidden"}`}>
       <div class="fixed inset-0 bg-gray-500/75 "></div>
-      <div class="fixed inset-y-3 left-[15%] sm:inset-y-[20%] sm:left-[10%] lg:left-[25%]">
+      <div class="fixed inset-y-20 left-0 sm:inset-y-[20%] sm:left-[10%] lg:left-[25%]">
         <div class="bg-white p-5">
           <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 border-gray-900">
             <h3 class="text-lg font-semibold text-black">Editar Producto</h3>
@@ -40,7 +40,7 @@ export default function EditarProducto({
             </button>
           </div>
           <form onSubmit={handleSubmit}>
-            <div class="grid gap-4 mb-4 sm:grid-cols-2">
+            <div class="grid grid-cols-2 gap-10 mb-4 sm:grid-cols-3">
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
                   Nombre
@@ -56,7 +56,7 @@ export default function EditarProducto({
                 />
                 {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
               </div>
-            
+
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
                   Precio
@@ -71,6 +71,20 @@ export default function EditarProducto({
                   onChange={handleChange}
                 />
                 {errors.price && <p style={{ color: "red" }}>{errors.price}</p>}
+              </div>
+              <div>
+                <label class="block mb-2 text-sm font-medium text-black">
+                  Imagen
+                </label>
+                <input
+                  type="text"
+                  id="img"
+                  name="img"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400"
+                  value={producto.img || ""}
+                  onChange={handleChange}
+                />
+                {errors.img && <p style={{ color: "red" }}>{errors.img}</p>}
               </div>
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
@@ -89,21 +103,6 @@ export default function EditarProducto({
                   <p style={{ color: "red" }}>{errors.description}</p>
                 )}
               </div>
-              <div>
-                <label class="block mb-2 text-sm font-medium text-black">
-                  Imagen
-                </label>
-                <input
-                  type="text"
-                  id="img"
-                  name="img"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400"
-                  value={producto.img || ""}
-                  onChange={handleChange}
-                />
-                {errors.img && <p style={{ color: "red" }}>{errors.img}</p>}
-              </div>
-            
             </div>
             <button
               type="submit"
