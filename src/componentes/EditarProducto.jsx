@@ -1,31 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 
-export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
+export default function EditarProducto({
+  isOpen,
+  onClose,
+  productoSeleccionado,
+  onActualizar
+}) {
+  const [producto, setProducto] = useState(productoSeleccionado);
+  useEffect(()=>{
+    setProducto(productoSeleccionado)
+  }, [productoSeleccionado])
 
-  const [producto, setProductos] = useState({
-    name: "",
-    price: "",
-    description: "",
-    img: "",
-  });
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
-    const {name, value} = e.target;
-    setProductos({...producto, [name]: value})
-  }
+    const { name, value } = e.target;
+    setProducto({ ...producto, [name]: value });
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    onAgregar(producto)
-    setProductos({
-      name: '',
-      price: '',
-      description: '',
-      img: ''
-    })
-  }
+    e.preventDefault();
+    onActualizar(producto);
+  };
 
   return (
     <div class={`${isOpen ? "relative" : "hidden"}`}>
@@ -33,7 +30,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
       <div class="fixed inset-y-3 left-[15%] sm:inset-y-[20%] sm:left-[10%] lg:left-[25%]">
         <div class="bg-white p-5">
           <div class="flex justify-between items-center pb-4 mb-4 rounded-t border-b sm:mb-5 border-gray-900">
-            <h3 class="text-lg font-semibold text-black">Añadir Producto</h3>
+            <h3 class="text-lg font-semibold text-black">Editar Producto</h3>
             <button
               type="button"
               onClick={onClose}
@@ -42,12 +39,10 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
               <IoMdClose />
             </button>
           </div>
-          <form onSubmit={handleSubmit} action="POST">
+          <form onSubmit={handleSubmit}>
             <div class="grid gap-4 mb-4 sm:grid-cols-2">
               <div>
-                <label
-                  class="block mb-2 text-sm font-medium text-black"
-                >
+                <label class="block mb-2 text-sm font-medium text-black">
                   Nombre
                 </label>
                 <input
@@ -56,15 +51,14 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   id="name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
                   placeholder="Example name"
-                  value={producto.name}
+                  value={producto.name || ""}
                   onChange={handleChange}
                 />
-                {errors.name && <p style={{color: 'red'}}>{errors.name}</p>}
+                {errors.name && <p style={{ color: "red" }}>{errors.name}</p>}
               </div>
+            
               <div>
-                <label
-                  class="block mb-2 text-sm font-medium text-black"
-                >
+                <label class="block mb-2 text-sm font-medium text-black">
                   Precio
                 </label>
                 <input
@@ -73,15 +67,13 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   id="price"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400 "
                   placeholder="$1222"
-                  value={producto.price}
+                  value={producto.price || ""}
                   onChange={handleChange}
                 />
-                {errors.price && <p style={{color: 'red'}}>{errors.price}</p>}
+                {errors.price && <p style={{ color: "red" }}>{errors.price}</p>}
               </div>
               <div>
-                <label
-                  class="block mb-2 text-sm font-medium text-black"
-                >
+                <label class="block mb-2 text-sm font-medium text-black">
                   Descripcion
                 </label>
                 <textarea
@@ -90,15 +82,15 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   rows="4"
                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder-gray-400"
                   placeholder="Ingrese una descripcion del producto"
-                  value={producto.description}
+                  value={producto.description || ""}
                   onChange={handleChange}
                 ></textarea>
-                {errors.description && <p style={{color: 'red'}}>{errors.description}</p>}
+                {errors.description && (
+                  <p style={{ color: "red" }}>{errors.description}</p>
+                )}
               </div>
               <div>
-                <label
-                  class="block mb-2 text-sm font-medium text-black"
-                >
+                <label class="block mb-2 text-sm font-medium text-black">
                   Imagen
                 </label>
                 <input
@@ -106,17 +98,18 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   id="img"
                   name="img"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400"
-                  value={producto.img}
+                  value={producto.img || ""}
                   onChange={handleChange}
                 />
-                {errors.img && <p style={{color: 'red'}}>{errors.img}</p>}
+                {errors.img && <p style={{ color: "red" }}>{errors.img}</p>}
               </div>
+            
             </div>
             <button
               type="submit"
               class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 font-medium cursor-pointer text-sm px-5 py-2.5 text-center "
             >
-              Agregar
+              Editar
             </button>
           </form>
         </div>

@@ -5,11 +5,21 @@ import { RiAddFill } from "react-icons/ri";
 import { IoSearch } from "react-icons/io5";
 import loading from "../img/loading.gif";
 import AgregarProducto from "../componentes/AgregarProducto";
+import EditarProducto from "../componentes/EditarProducto";
 
 export default function Admin() {
   const [products, setProducts] = useState([]);
+  const [form, setForm] = useState({
+    name: "",
+    img: "",
+    description: "",
+    price: "",
+  });
+
   const [carga, setCarga] = useState(true);
   const [isCartOpen, setCartOpen] = useState(false);
+  const [formEditOpen, setFormEditOpen] = useState(false);
+  const [seleccionado, setSeleccionado] = useState(null);
 
   useEffect(() => {
     fetch("https://685716ec21f5d3463e54702a.mockapi.io/productos/products")
@@ -84,6 +94,31 @@ export default function Admin() {
       } catch (error) {
         alert("Hubo un problema al elimnar el producto");
       }
+    }
+  };
+
+  const editarProducto = async (producto) => {
+    try {
+      const respuesta = await fetch(
+        `https://685716ec21f5d3463e54702a.mockapi.io/productos/products/${producto.id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(producto),
+        }
+      );
+      if (!respuesta.ok) {
+        throw Error("Error al actualizar el producto");
+      }
+      const data = await respuesta.json();
+      alert("Producto actualizado correctamente");
+      setFormEditOpen(false);
+      setSeleccionado(null);
+      mostrarProductos();
+    } catch (error) {
+      console.log("Hubo un error al editar", error);
     }
   };
 
@@ -166,12 +201,19 @@ export default function Admin() {
                         alt={product.name}
                       />
                     </td>
-                    <td className="px-4 py-3">Esto es una descripcion</td>
+                    <td className="px-4 py-3">{product.description}</td>
                     <td className="px-4 py-3">$ {product.price}</td>
                     <td className="px-4 py-5 flex items-center space-x-3">
-                      <div className="text-blue-700 text-xl cursor-pointer hover:text-blue-950">
-                        <FaRegEdit />
-                      </div>
+                      <button
+                        onClick={() => {
+                          setFormEditOpen(true);
+                          setSeleccionado(product);
+                        }}
+                      >
+                        <div className="text-blue-700 text-xl cursor-pointer hover:text-blue-950">
+                          <FaRegEdit />
+                        </div>
+                      </button>
                       <button onClick={() => eliminarProducto(product.id)}>
                         <div className="text-red-600 text-2xl cursor-pointer hover:text-red-900">
                           <MdDelete />
@@ -181,6 +223,16 @@ export default function Admin() {
                   </tr>
                 ))}
               </tbody>
+              {formEditOpen ? (
+                <EditarProducto
+                  isOpen={formEditOpen}
+                  onClose={() => setFormEditOpen(false)}
+                  productoSeleccionado={seleccionado}
+                  onActualizar={editarProducto}
+                />
+              ) : (
+                <></>
+              )}
             </table>
           </div>
         </div>
