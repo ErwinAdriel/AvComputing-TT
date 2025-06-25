@@ -62,7 +62,7 @@ export const AuthProvider = ({ children }) => {
   const logoutSession = (e) => {
     e.preventDefault();
     setIsAuth(false);
-    localStorage.setItem("isAuth", false);
+    localStorage.removeItem("isAuth");
     navigate("/login");
   };
 
