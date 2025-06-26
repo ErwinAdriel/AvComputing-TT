@@ -64,13 +64,13 @@ export default function Nav() {
                     <span>AvComputing</span>
                   </div>
                 </Link>
-                <div class="md:flex hidden w-[517px] h-[44px] border border-slate-400">
+                <div class="md:flex hidden w-[500px] h-[44px] border border-slate-400">
                   <div class="w-full h-full flex items-center bg-white">
                     <form action="#" class="h-full w-full">
                       <input
                         type="text"
-                        class="search-input h-full w-full px-4 focus:outline-none"
-                        placeholder="Buscar producto..."
+                        class="placeholder:text-gray-400 search-input h-full w-full px-4 focus:outline-none"
+                        placeholder="Buscar productos..."
                       />
                     </form>
                   </div>

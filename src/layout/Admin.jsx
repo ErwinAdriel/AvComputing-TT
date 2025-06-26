@@ -23,7 +23,7 @@ export default function Admin() {
             </h2>
           </div>
           <div className="flex justify-between mt-5">
-            <div className="bg-blue-700 text-white hover:bg-blue-900">
+            <div className="bg-blue-700 text-white hover:bg-blue-900 duration-300 ease-in-out">
               <button onClick={() => setCartOpen(!isCartOpen)}>
                 <div className="flex px-4 py-3 cursor-pointer text-normal font-medium">
                   <RiAddFill className="text-2xl my-auto" />

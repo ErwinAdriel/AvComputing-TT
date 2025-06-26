@@ -59,7 +59,7 @@ export default function EditarProducto({
 
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
-                  Precio
+                  Precio mayor a 0
                 </label>
                 <input
                   type="number"
@@ -74,7 +74,7 @@ export default function EditarProducto({
               </div>
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
-                  Imagen
+                  Imagen URL
                 </label>
                 <input
                   type="text"
@@ -104,12 +104,14 @@ export default function EditarProducto({
                 )}
               </div>
             </div>
-            <button
-              type="submit"
-              class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 font-medium cursor-pointer text-sm px-5 py-2.5 text-center "
-            >
-              Editar
-            </button>
+            <div class="w-full">
+              <button
+                type="submit"
+                class="w-full text-white duration-300 ease-in-out bg-blue-700 hover:bg-blue-800 font-medium cursor-pointer text-sm py-2.5 "
+              >
+                Editar
+              </button>
+            </div>
           </form>
         </div>
       </div>

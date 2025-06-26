@@ -60,7 +60,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
               </div>
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
-                  Precio
+                  Precio mayor a 0
                 </label>
                 <input
                   type="number"
@@ -75,13 +75,14 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
               </div>
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">
-                  Imagen
+                  Imagen URL
                 </label>
                 <input
                   type="text"
                   id="img"
                   name="img"
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 placeholder-gray-400"
+                  placeholder="https://www.venex.com.ar/products_images/1738669809_1.jpg"
                   value={producto.img}
                   onChange={handleChange}
                 />
@@ -96,7 +97,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                   name="description"
                   rows="4"
                   class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 placeholder-gray-400"
-                  placeholder="Ingrese una descripcion del producto"
+                  placeholder="Ingrese una descripcion mínima de 10 caracteres."
                   value={producto.description}
                   onChange={handleChange}
                 ></textarea>
@@ -105,12 +106,14 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
                 )}
               </div>
             </div>
-            <button
-              type="submit"
-              class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 font-medium cursor-pointer text-sm px-5 py-2.5 text-center "
-            >
-              Agregar
-            </button>
+            <div class="w-full">
+              <button
+                type="submit"
+                class="w-full text-white duration-300 ease-in-out bg-blue-700 hover:bg-blue-800 font-medium cursor-pointer text-sm py-2.5 "
+              >
+                Agregar
+              </button>
+            </div>
           </form>
         </div>
       </div>
