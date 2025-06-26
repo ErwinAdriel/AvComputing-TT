@@ -7,7 +7,6 @@ import loading from "../img/loading.gif";
 
 export default function Home(){
     const {carga} = useContext(CartContext);
-    
     return(
         <>
             <Banner />
