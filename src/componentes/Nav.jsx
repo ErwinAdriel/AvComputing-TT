@@ -9,6 +9,7 @@ import { Link, NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
+import logo from "../assets/logoshop.png";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
@@ -29,7 +30,8 @@ export default function Nav() {
             <div class="relative h-full">
               <div class="flex justify-between items-center h-full">
                 <Link to={"/admin"}>
-                  <div class="text-3xl font-bold">
+                  <div class="text-3xl font-bold flex space-x-2">
+                    <img class="w-10" src={logo} alt="logo" />
                     <span>AvComputing</span>
                   </div>
                 </Link>
@@ -57,7 +59,8 @@ export default function Nav() {
             <div class="relative h-full">
               <div class="flex justify-between items-center h-full">
                 <Link to={"/"}>
-                  <div class="text-3xl font-bold">
+                  <div class="text-3xl font-bold flex space-x-2">
+                    <img class="w-10" src={logo} alt="logo" />
                     <span>AvComputing</span>
                   </div>
                 </Link>
