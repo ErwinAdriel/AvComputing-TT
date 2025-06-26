@@ -13,7 +13,7 @@ import { AuthContext } from "../context/AuthContext";
 export default function Nav() {
   const [open, setOpen] = useState(false);
   const { isAuthenticated, setIsAuth } = useContext(CartContext);
-  const { logoutSession } = useContext(AuthContext);
+  const { logoutSession, role } = useContext(AuthContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
   const Menu = [
@@ -23,38 +23,16 @@ export default function Nav() {
   ];
   return (
     <div>
-      <div
-        class={`w-full h-[86px] ${
-          isAuthenticated ? "bg-slate-900 text-white" : "bg-white text-black"
-        } lg:block md:px-20 px-5`}
-      >
-        <div class="container-x mx-auto h-full">
-          <div class="relative h-full">
-            <div class="flex justify-between items-center h-full">
-              <Link to={`${isAuthenticated ? "/admin" : "/"}`}>
-                <div class="text-3xl font-bold">
-                  <span>AvComputing</span>
-                </div>
-              </Link>
-              <div
-                class={`${
-                  isAuthenticated ? "hidden" : "md:flex hidden"
-                } w-[517px] h-[44px] border border-slate-400`}
-              >
-                <div class="w-full h-full flex items-center bg-white">
-                  <form action="#" class="h-full w-full">
-                    <input
-                      type="text"
-                      class="search-input h-full w-full px-4 focus:outline-none"
-                      placeholder="Buscar producto..."
-                    />
-                  </form>
-                </div>
-                <div class="border-2 border-black px-3 flex items-center bg-slate-900 text-white">
-                  <button>Buscar</button>
-                </div>
-              </div>
-              {isAuthenticated ? (
+      {isAuthenticated && role === "admin" ? (
+        <div class="bg-slate-900 text-white w-full h-[86px] lg:block md:px-20 px-5">
+          <div class="container-x mx-auto h-full">
+            <div class="relative h-full">
+              <div class="flex justify-between items-center h-full">
+                <Link to={"/admin"}>
+                  <div class="text-3xl font-bold">
+                    <span>AvComputing</span>
+                  </div>
+                </Link>
                 <div class="flex space-x-3 items-center">
                   <div class="flex text-2xl">
                     <span>
@@ -62,17 +40,41 @@ export default function Nav() {
                     </span>
                   </div>
                   <div class="flex text-3xl">
-                    <button
-                      class="cursor-pointer"
-                      onClick={logoutSession}
-                    >
+                    <button class="cursor-pointer" onClick={logoutSession}>
                       <span>
                         <IoMdExit />
                       </span>
                     </button>
                   </div>
                 </div>
-              ) : (
+              </div>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div class="bg-white text-slate-900 w-full h-[86px] lg:block md:px-20 px-5">
+          <div class="container-x mx-auto h-full">
+            <div class="relative h-full">
+              <div class="flex justify-between items-center h-full">
+                <Link to={"/"}>
+                  <div class="text-3xl font-bold">
+                    <span>AvComputing</span>
+                  </div>
+                </Link>
+                <div class="md:flex hidden w-[517px] h-[44px] border border-slate-400">
+                  <div class="w-full h-full flex items-center bg-white">
+                    <form action="#" class="h-full w-full">
+                      <input
+                        type="text"
+                        class="search-input h-full w-full px-4 focus:outline-none"
+                        placeholder="Buscar producto..."
+                      />
+                    </form>
+                  </div>
+                  <div class="border-2 border-black px-3 flex items-center bg-slate-900 text-white">
+                    <button>Buscar</button>
+                  </div>
+                </div>
                 <div class="flex space-x-3 items-center">
                   <div class="md:flex text-3xl hidden">
                     <span>
@@ -97,20 +99,38 @@ export default function Nav() {
                       onClose={() => setCartOpen(false)}
                     />
                   </div>
-                  <Link to={"/login"}>
-                    <div class="flex text-2xl">
-                      <span>
-                        <FaRegUser />
-                      </span>
-                    </div>
-                  </Link>
+                  {isAuthenticated ? (
+                    <>
+                      <div class="flex text-2xl">
+                        <span>
+                          <FaRegUser />
+                        </span>
+                      </div>
+                      <div class="flex text-3xl">
+                        <button class="cursor-pointer" onClick={logoutSession}>
+                          <span>
+                            <IoMdExit />
+                          </span>
+                        </button>
+                      </div>
+                    </>
+                  ) : (
+                    <Link to={"/login"}>
+                      <div class="flex text-2xl">
+                        <span>
+                          <FaRegUser />
+                        </span>
+                      </div>
+                    </Link>
+                  )}
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {isAuthenticated ? (
+      )}
+
+      {isAuthenticated && role === "admin" ? (
         ""
       ) : (
         <div class="bg-slate-900 w-full font-medium relative md:block text-white px-5 sm:px-20">
@@ -137,8 +157,12 @@ export default function Nav() {
                 key={menu.id}
                 class="hidden sm:flex duration-300 ease-in-out hover:text-black hover:bg-white"
               >
-                <NavLink to={menu.link} className={({ isActive }) =>
-                  isActive ? "text-black bg-white" : ""}>
+                <NavLink
+                  to={menu.link}
+                  className={({ isActive }) =>
+                    isActive ? "text-black bg-white" : ""
+                  }
+                >
                   <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
                 </NavLink>
               </li>
@@ -150,8 +174,12 @@ export default function Nav() {
                     key={menu.id}
                     class="sm:hidden duration-100 hover:text-black hover:bg-white"
                   >
-                    <NavLink to={menu.link} className={({ isActive }) =>
-                  isActive ? "text-red-600" : ""}>
+                    <NavLink
+                      to={menu.link}
+                      className={({ isActive }) =>
+                        isActive ? "text-red-600" : ""
+                      }
+                    >
                       <div class="px-3 py-4 cursor-pointer">{menu.name}</div>
                     </NavLink>
                   </li>
