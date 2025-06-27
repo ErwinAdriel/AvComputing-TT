@@ -11,6 +11,7 @@ export const CartProvider = ({ children }) => {
   const [error, setError] = useState(false);
   const [precio, setPrecio] = useState();
   const [isAuthenticated, setIsAuth] = useState(false);
+  const [busqueda, setBusqueda] = useState("");
 
   useEffect(() => {
     fetch("https://685716ec21f5d3463e54702a.mockapi.io/productos/products")
@@ -29,8 +30,6 @@ export const CartProvider = ({ children }) => {
         });
       });
   }, []);
-
-  //console.log(cart);
 
   function handleAddToCart(product) {
     setPrecio(product.price);
@@ -55,7 +54,7 @@ export const CartProvider = ({ children }) => {
         })
       );
     } else {
-      toast.success("El producto se ha agregado al carrito")
+      toast.success("El producto se ha agregado al carrito");
       setCart([...cart, { ...product, cantidad: 1 }]);
       setVacio(false);
     }
@@ -110,6 +109,10 @@ export const CartProvider = ({ children }) => {
     console.log("Carrito vacio");
   }
 
+  const productosFiltrados = products.filter((product) =>
+    product?.name.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
   return (
     <CartContext.Provider
       value={{
@@ -122,8 +125,11 @@ export const CartProvider = ({ children }) => {
         eliminarCant,
         agregarCant,
         vaciarCart,
-        isAuthenticated, 
-        setIsAuth
+        isAuthenticated,
+        setIsAuth,
+        productosFiltrados,
+        busqueda,
+        setBusqueda,
       }}
     >
       {children}

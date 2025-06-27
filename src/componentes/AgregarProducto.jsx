@@ -41,7 +41,7 @@ export default function AgregarProducto({ isOpen, onClose, onAgregar }) {
               <IoMdClose />
             </button>
           </div>
-          <form onSubmit={handleSubmit} action="POST">
+          <form onSubmit={handleSubmit}>
             <div class="grid grid-cols-2 gap-10 mb-4 sm:grid-cols-3">
               <div>
                 <label class="block mb-2 text-sm font-medium text-black">

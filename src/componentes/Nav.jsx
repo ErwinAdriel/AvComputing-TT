@@ -1,10 +1,9 @@
+import { useContext, useState } from "react";
 import { FaRegUser } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
-import { IoCartOutline } from "react-icons/io5";
-import { useContext, useState } from "react";
+import { IoCartOutline, IoClose } from "react-icons/io5";
 import { IoMdExit } from "react-icons/io";
-import { CiMenuBurger } from "react-icons/ci";
-import { IoClose } from "react-icons/io5";
+import { CiMenuBurger, CiSearch } from "react-icons/ci";
 import { Link, NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
@@ -13,7 +12,8 @@ import logo from "../assets/logoshop.png";
 
 export default function Nav() {
   const [open, setOpen] = useState(false);
-  const { isAuthenticated, setIsAuth } = useContext(CartContext);
+  const { isAuthenticated, productosFiltrados, busqueda, setBusqueda } =
+    useContext(CartContext);
   const { logoutSession, role } = useContext(AuthContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
@@ -57,25 +57,34 @@ export default function Nav() {
         <div class="bg-white text-slate-900 w-full h-[86px] lg:block md:px-20 px-5">
           <div class="container-x mx-auto h-full">
             <div class="relative h-full">
-              <div class="flex justify-between items-center h-full">
+              <div class="flex justify-between space-x-5 items-center h-full">
                 <Link to={"/"}>
                   <div class="text-3xl font-bold flex space-x-2">
                     <img class="w-10" src={logo} alt="logo" />
-                    <span>AvComputing</span>
+                    <span class="hidden lg:flex">AvComputing</span>
                   </div>
                 </Link>
-                <div class="md:flex hidden w-[500px] h-[44px] border border-slate-400">
+                <div class="flex  w-[500px] border border-slate-400">
                   <div class="w-full h-full flex items-center bg-white">
-                    <form action="#" class="h-full w-full">
-                      <input
-                        type="text"
-                        class="placeholder:text-gray-400 search-input h-full w-full px-4 focus:outline-none"
-                        placeholder="Buscar productos..."
-                      />
+                    <form class="h-full w-full">
+                      <div class="flex">
+                        <input
+                          type="text"
+                          class=" placeholder:text-gray-400 h-full w-full px-4 py-2 focus:outline-none"
+                          placeholder="Buscar productos..."
+                          value={busqueda}
+                          onChange={(e) => setBusqueda(e.target.value)}
+                        />
+                        <div class="px-4 py-2 flex items-center bg-slate-900 text-white cursor-pointer">
+                          <button
+                            type="submit"
+                            class="text-white text-xl cursor-pointer"
+                          >
+                            <CiSearch />
+                          </button>
+                        </div>
+                      </div>
                     </form>
-                  </div>
-                  <div class="border-2 border-black px-3 flex items-center bg-slate-900 text-white">
-                    <button>Buscar</button>
                   </div>
                 </div>
                 <div class="flex space-x-3 items-center">
