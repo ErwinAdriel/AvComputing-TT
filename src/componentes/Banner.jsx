@@ -34,9 +34,9 @@ export default function Banner(){
     };
 
     return(
-        <div class="w-full xl:h-[400px] h-45">
-                <div class="xl:h-full w-full relative">
-                    <div class="item w-full xl:h-[400px] h-45">
+        <div class="w-full xl:h-[400px] h-45 relative">
+                <div class="xl:h-full w-full">
+                    <div class="w-full xl:h-[400px] h-45">
                         <div class="bg-cover bg-center bg-no-repeat h-full w-full duration-500" style={{backgroundImage: `url(${slides[actualIndex].url})`}} >
                         </div>
                     </div>

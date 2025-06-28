@@ -10,7 +10,7 @@ export default function DetallesProductos() {
   const product = products.find((producto) => producto.id == id);
 
   return (
-    <>
+    <div className="pt-38">
       {product ? (
         <div className="w-full lg:flex justify-between py-5 lg:px-20">
           <div className="lg:w-1/2 xl:mr-[70px] lg:mr-[50px]">
@@ -65,6 +65,6 @@ export default function DetallesProductos() {
       ) : (
         <Error />
       )}
-    </>
+    </div>
   );
 }

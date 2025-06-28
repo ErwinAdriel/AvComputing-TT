@@ -6,7 +6,7 @@ import { SiGooglemaps } from "react-icons/si";
 
 export default function Contacto(){
    return(
-    <div class="bg-white mb-10 py-5 lg:px-20">
+    <div class="bg-white mb-10 py-5 lg:px-20 pt-38 ">
         <div class="mx-auto max-w-2xl text-center">
             <h2 class="text-4xl font-semibold text-gray-900 sm:text-5xl">Contacto</h2>
         </div>

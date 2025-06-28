@@ -8,7 +8,7 @@ import loading from "../img/loading.gif";
 export default function Home(){
     const {carga} = useContext(CartContext);
     return(
-        <>
+        <div class="pt-34">
             <Banner />
             <Categorias />
             {
@@ -17,6 +17,6 @@ export default function Home(){
                     <ProductList />
                 </div>
             }
-        </>
+        </div>
     )
 }

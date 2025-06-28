@@ -19,7 +19,7 @@ function App() {
 
   return (
     <>
-        <Header/>
+        <Header />
         <Routes>
           <Route path="*" element={<Error />} />
           <Route

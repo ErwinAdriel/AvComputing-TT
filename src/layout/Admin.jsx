@@ -12,16 +12,12 @@ export default function Admin() {
   const {products, isCartOpen, setCartOpen, formEditOpen, setFormEditOpen, seleccionado, setSeleccionado, carga, agregarProducto, eliminarProducto, editarProducto} = useContext(AdminContext);
   
   return (
-    <div className="bg-white mb-10 py-5 lg:px-20">
+    <div className="bg-white border-1 border-red-600 mb-10 py-5 lg:px-20 pt-25">
       {carga ? (
         <img class="mx-auto" src={loading} alt="loading" />
       ) : (
         <div>
-          <div className="mx-auto max-w-2xl text-center">
-            <h2 className="text-3xl font-semibold text-gray-900 sm:text-5xl">
-              Sistema de autogestion
-            </h2>
-          </div>
+          
           <div className="flex justify-between mt-5">
             <div className="bg-blue-700 text-white hover:bg-blue-900 duration-300 ease-in-out">
               <button onClick={() => setCartOpen(!isCartOpen)}>

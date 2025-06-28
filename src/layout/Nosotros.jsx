@@ -4,12 +4,12 @@ import nosotros from "../assets/nosotros.jpg";
 
 export default function Nosotros(){
     return(
-        <div class='w-full pt-5 pb-5'>
+        <div class='w-full pt-38 pb-5'>
             <div class='w-full'>
                 <div class='mx-auto flex justify-center'>
                     <h1 class='text-4xl font-semibold text-gray-900 sm:text-5xl'>Sobre nosotros</h1>
                 </div>
-                <div class='w-full'>
+                <div class='w-full mt-5'>
                     <div class='w-full px-20 min-h-[665px] lg:flex lg:space-x-12 items-center pb-10 lg:pb-0'>
                         <div class='w-full md:w-[410px] md:h-[600px] h-auto overflow-hidden shadow-xl/30'>
                             <img src={nosotros} alt="about" class='w-full h' />

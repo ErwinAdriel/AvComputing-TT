@@ -32,7 +32,7 @@ export default function Nav() {
                 <Link to={"/admin"}>
                   <div class="text-3xl font-bold flex space-x-2">
                     <img class="w-10" src={logo} alt="logo" />
-                    <span>AvComputing</span>
+                    <span>DASHBOARD</span>
                   </div>
                 </Link>
                 <div class="flex space-x-3 items-center">
@@ -54,7 +54,7 @@ export default function Nav() {
           </div>
         </div>
       ) : (
-        <div class="bg-white text-slate-900 w-full h-[86px] lg:block md:px-20 px-5">
+        <div class="bg-white text-slate-900 w-full h-20 lg:block md:px-20 px-5">
           <div class="container-x mx-auto h-full">
             <div class="relative h-full">
               <div class="flex justify-between space-x-5 items-center h-full">
