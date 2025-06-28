@@ -1,4 +1,5 @@
 import { createContext, useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
 export const AdminContext = createContext();
 export const AdminProvider = ({ children }) => {
@@ -50,7 +51,11 @@ export const AdminProvider = ({ children }) => {
       }
       const data = await respuesta.json();
       setCartOpen(false);
-      alert("Producto agregado correctamente");
+      Swal.fire({
+        title: ":)",
+        text: "Producto agregado correctamente!",
+        icon: "success",
+      });
       mostrarProductos();
     } catch (error) {
       console.log(error.message);
@@ -70,9 +75,17 @@ export const AdminProvider = ({ children }) => {
   };
 
   const eliminarProducto = async (id) => {
-    const confirmar = window.confirm("¿Estas seguro de eliminar el producto?");
+    const confirm = Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Esto eliminara el producto del sistema",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar",
+    });
 
-    if (confirmar) {
+    if ((await confirm).isConfirmed) {
       try {
         const respuesta = await fetch(
           `https://685716ec21f5d3463e54702a.mockapi.io/productos/products/${id}`,
@@ -83,7 +96,11 @@ export const AdminProvider = ({ children }) => {
         if (!respuesta.ok) {
           throw Error("Error al eliminar");
         }
-        alert("Producto eliminado correctamente");
+        Swal.fire({
+          title: "Eliminado!",
+          text: "Producto eliminado correctamente.",
+          icon: "success",
+        });
         mostrarProductos();
       } catch (error) {
         alert("Hubo un problema al elimnar el producto");
@@ -92,11 +109,15 @@ export const AdminProvider = ({ children }) => {
   };
 
   const editarProducto = async (producto) => {
-    const confirmar = window.confirm(
-      "¿Estas seguro de actualizar el producto?"
-    );
+    const confirm = Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Esto actualizara los datos del producto",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Guardar",
+    });
 
-    if (confirmar) {
+    if ((await confirm).isConfirmed) {
       try {
         const respuesta = await fetch(
           `https://685716ec21f5d3463e54702a.mockapi.io/productos/products/${producto.id}`,
@@ -112,7 +133,7 @@ export const AdminProvider = ({ children }) => {
           throw Error("Error al actualizar el producto");
         }
         const data = await respuesta.json();
-        alert("Producto actualizado correctamente");
+        Swal.fire(":)", "Producto actualizado exitosamente!", "success");
         setFormEditOpen(false);
         setSeleccionado(null);
         mostrarProductos();

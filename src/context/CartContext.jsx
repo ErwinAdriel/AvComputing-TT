@@ -104,9 +104,9 @@ export const CartProvider = ({ children }) => {
   }
 
   function vaciarCart() {
+    toast.error("Se eliminaron todos los productos");
     setCart([]);
     setVacio(true);
-    console.log("Carrito vacio");
   }
 
   const productosFiltrados = products.filter((product) =>

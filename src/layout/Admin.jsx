@@ -12,7 +12,7 @@ export default function Admin() {
   const {products, isCartOpen, setCartOpen, formEditOpen, setFormEditOpen, seleccionado, setSeleccionado, carga, agregarProducto, eliminarProducto, editarProducto} = useContext(AdminContext);
   
   return (
-    <div className="bg-white border-1 border-red-600 mb-10 py-5 lg:px-20 pt-25">
+    <div className="bg-white mb-10 py-5 lg:px-20 pt-25">
       {carga ? (
         <img class="mx-auto" src={loading} alt="loading" />
       ) : (
