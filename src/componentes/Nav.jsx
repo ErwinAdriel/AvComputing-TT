@@ -60,7 +60,7 @@ export default function Nav() {
               <div class="flex justify-between space-x-5 items-center h-full">
                 <Link to={"/"}>
                   <div class="text-3xl font-bold flex space-x-2">
-                    <img class="w-10" src={logo} alt="logo" />
+                    <img class="w-15 sm:w-10" src={logo} alt="logo" />
                     <span class="hidden lg:flex">AvComputing</span>
                   </div>
                 </Link>
