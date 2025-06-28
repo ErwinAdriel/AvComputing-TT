@@ -19,40 +19,25 @@ function App() {
 
   return (
     <>
-        <Header />
-        <Routes>
-          <Route path="*" element={<Error />} />
-          <Route
-            path="/"
-            element={
-              <Home />
-            }
-          />
-          <Route
-            path="/productos"
-            element={
-              <GaleriadeProductos />
-            }
-          />
-          <Route
-            path="/productos/:id"
-            element={
-              <DetallesProductos />
-            }
-          />
-          <Route path="/nosotros" element={<Nosotros />} />
-          <Route path="/contacto" element={<Contacto />} />
-          <Route
-            path="/admin"
-            element={
-              <RutaProtegida isAuthenticated={isAuthenticated}>
-                <Admin />
-              </RutaProtegida>
-            }
-          />
-          <Route path="/login" element={<Login />} />
-        </Routes>
-        <Footer />
+      <Header />
+      <Routes>
+        <Route path="*" element={<Error />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/productos" element={<GaleriadeProductos />} />
+        <Route path="/productos/:id" element={<DetallesProductos />} />
+        <Route path="/nosotros" element={<Nosotros />} />
+        <Route path="/contacto" element={<Contacto />} />
+        <Route
+          path="/admin"
+          element={
+            <RutaProtegida isAuthenticated={isAuthenticated}>
+              <Admin />
+            </RutaProtegida>
+          }
+        />
+        <Route path="/login" element={<Login />} />
+      </Routes>
+      <Footer />
     </>
   );
 }
