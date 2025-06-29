@@ -1,16 +1,12 @@
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
-import { Helmet } from "react-helmet";
 
 const Login = () => {
   const {email, setEmail, password, setPassword, errors, handleSubmit} = useContext(AuthContext);
   
   return (
     <div class="pt-50 pb-20">
-      <Helmet>
-        <meta charSet="UTF-8" />
-        <title>Ingresar | AvComputing</title>
-      </Helmet> 
+      <title>Ingresar | AvComputing</title>
       <div class="flex flex-col items-center justify-center mx-auto">
         <div class="w-full bg-white border-gray-300 border md:mt-0 sm:max-w-md xl:p-0 text-black">
           <div class="p-6 space-y-4 md:space-y-6 sm:p-8">

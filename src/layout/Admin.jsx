@@ -13,6 +13,7 @@ export default function Admin() {
   
   return (
     <div className="bg-white mb-10 py-5 lg:px-20 pt-25">
+      <title>Dashboard</title>
       {carga ? (
         <img class="mx-auto" src={loading} alt="loading" />
       ) : (

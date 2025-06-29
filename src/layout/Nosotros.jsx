@@ -1,15 +1,10 @@
 import { Link } from "react-router-dom";
 import nosotros from "../assets/nosotros.jpg";
-import { Helmet } from "react-helmet";
 
 export default function Nosotros() {
   return (
     <div class="w-full pt-38 pb-5">
-      <Helmet>
-        <link rel="icon" type="image" href="/logoshop.png" />
-        <meta charSet="UTF-8" />
-        <title>Nosotros | AvComputing</title>
-      </Helmet>
+      <title>Nosotros | AvComputing</title>
       <div class="w-full">
         <div class="mx-auto flex justify-center">
           <h1 class="text-4xl font-semibold text-gray-900 sm:text-5xl">

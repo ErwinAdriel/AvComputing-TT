@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from "react";
+import { useContext } from "react";
 import "./App.css";
 import Home from "./layout/Home";
 import Footer from "./componentes/Footer";
@@ -16,7 +16,6 @@ import { CartContext } from "./context/CartContext";
 
 function App() {
   const { isAuthenticated } = useContext(CartContext);
-
   return (
     <>
       <Header />
@@ -25,7 +24,14 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/productos" element={<GaleriadeProductos />} />
         <Route path="/productos/:id" element={<DetallesProductos />} />
-        <Route path="/nosotros" element={<Nosotros />} />
+        <Route
+          path="/nosotros"
+          element={
+            <>
+              <Nosotros />
+            </>
+          }
+        />
         <Route path="/contacto" element={<Contacto />} />
         <Route
           path="/admin"

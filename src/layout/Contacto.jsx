@@ -2,16 +2,11 @@ import React from "react";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import { SiGooglemaps } from "react-icons/si";
-import { Helmet } from "react-helmet";
 
 export default function Contacto() {
   return (
     <div class="bg-white mb-10 py-5 lg:px-20 pt-38 ">
-      <Helmet>
-        <link rel="icon" type="image" href="/logoshop.png" />
-        <meta charSet="UTF-8" />
-        <title>Contacto | AvComputing</title>
-      </Helmet>
+      <title>Contacto | AvComputing</title>
       <div class="mx-auto max-w-2xl text-center">
         <h2 class="text-4xl font-semibold text-gray-900 sm:text-5xl">
           Contacto
