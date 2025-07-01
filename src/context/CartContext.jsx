@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import Swal from "sweetalert2";
 
 export const CartContext = createContext();
 
@@ -9,7 +10,6 @@ export const CartProvider = ({ children }) => {
   const [carga, setCarga] = useState(true);
   const [vacio, setVacio] = useState(true);
   const [error, setError] = useState(false);
-  const [precio, setPrecio] = useState();
   const [isAuthenticated, setIsAuth] = useState(false);
   const [busqueda, setBusqueda] = useState("");
 
@@ -32,85 +32,100 @@ export const CartProvider = ({ children }) => {
   }, []);
 
   function handleAddToCart(product) {
-    setPrecio(product.price);
     const productExist = cart.find((item) => item.id === product.id);
 
     if (productExist) {
-      /*if(productExist.id == product.id){
-            setCart([...cart, {...product}])
-        }*/
-      //Si el producto esta en el carrito
       setCart(
-        cart.map((item) => {
-          if (item.id === product.id) {
-            if (item.cantidad < product.stock) {
-              return { ...item, cantidad: item.cantidad + 1 };
-            }
-
-            return item;
-          } else {
-            return item;
-          }
-        })
+        cart.map((item) =>
+          item.id === product.id
+            ? { ...item, cantidad: item.cantidad + 1 }
+            : item
+        )
       );
     } else {
-      toast.success("El producto se ha agregado al carrito");
       setCart([...cart, { ...product, cantidad: 1 }]);
       setVacio(false);
     }
+    toast.success("El producto se ha agregado al carrito");
   }
 
-  function eliminarCant(product) {
-    setCart((prevCart) => {
-      return prevCart
-        .map((item) => {
-          if (item.id === product.id) {
-            if (item.cantidad > 1) {
-              return { ...item, cantidad: item.cantidad - 1 };
-            } else {
-              if (prevCart.length < 2) {
-                setVacio(true);
-              }
-              return null;
-            }
-          } else {
-            return item;
-          }
-        })
-        .filter((item) => item != null);
+  const vaciarCart = async () => {
+    const confirm = Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Esto eliminara todos los productos del carrito",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, vaciar",
+      cancelButtonText: "Cancelar",
     });
-  }
+    if ((await confirm).isConfirmed) {
+      setCart([]);
+      setVacio(true);
+      Swal.fire({
+        title: ":(",
+        text: "Carrito vacio!.",
+        icon: "success",
+      });
+    }
+  };
 
-  function agregarCant(product) {
-    setCart((afterCart) => {
-      return afterCart
-        .map((item) => {
-          if (item.id === product.id) {
-            if (item.cantidad < product.stock) {
-              return {
-                ...item,
-                cantidad: item.cantidad + 1,
-                price: precio + item.price,
-              };
-            } else {
-              return item;
-            }
-          } else {
-            return item;
-          }
-        })
-        .filter((item) => item === item);
+  const eliminarCant = (id) => {
+    setCart(
+      cart.map((product) =>
+        product.id === id
+          ? { ...product, cantidad: Math.max((product.cantidad || 1) - 1, 1) }
+          : product
+      )
+    );
+  };
+
+  const agregarCant = (id) => {
+    setCart(
+      cart.map((product) =>
+        product.id === id
+          ? { ...product, cantidad: (product.cantidad || 1) + 1 }
+          : product
+      )
+    );
+  };
+
+  const eliminarProd = async (id) => {
+    const confirm = Swal.fire({
+      title: "¿Estas seguro?",
+      text: "Esto eliminara el producto del carrito",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, eliminar",
+      cancelButtonText: "Cancelar",
     });
-  }
 
-  function vaciarCart() {
-    toast.error("Se eliminaron todos los productos");
-    setCart([]);
-    setVacio(true);
-  }
+    if ((await confirm).isConfirmed) {
+      const deleteProd = cart.filter((product) => product.id !== id);
+      setCart(deleteProd);
+      Swal.fire({
+        title: ":(",
+        text: "Producto eliminado!.",
+        icon: "success",
+      });
+      if (cart.length == 1) {
+        setVacio(true);
+      }
+    }
+  };
 
   const productosFiltrados = products.filter((product) =>
     product?.name.toLowerCase().includes(busqueda.toLowerCase())
+  );
+
+  //Total $ de productos
+
+  const total = cart.reduce(
+    (acc, item) => acc + item.price * (item.cantidad || 1),
+    0
   );
 
   return (
@@ -125,11 +140,13 @@ export const CartProvider = ({ children }) => {
         eliminarCant,
         agregarCant,
         vaciarCart,
+        eliminarProd,
         isAuthenticated,
         setIsAuth,
         productosFiltrados,
         busqueda,
         setBusqueda,
+        total,
       }}
     >
       {children}

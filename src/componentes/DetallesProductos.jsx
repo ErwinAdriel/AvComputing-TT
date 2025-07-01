@@ -11,7 +11,6 @@ export default function DetallesProductos() {
 
   return (
     <div className="pt-38">
-      
       {product ? (
         <div className="w-full lg:flex justify-between py-5 lg:px-20">
           <title>{`${product.name} | AvComputing`}</title>

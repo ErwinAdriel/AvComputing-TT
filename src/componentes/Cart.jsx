@@ -1,11 +1,12 @@
 import { useContext } from "react";
 import { MdDelete } from "react-icons/md";
 import { IoAddCircleSharp } from "react-icons/io5";
-import { IoMdClose } from "react-icons/io";
+import { IoMdClose, IoMdAdd } from "react-icons/io";
+import { GrFormSubtract } from "react-icons/gr";
 import { CartContext } from "../context/CartContext";
 
 export default function Cart({ isOpen, onClose }) {
-  const { cart, vaciarCart, eliminarCant, vacio, agregarCant } =
+  const { cart, vaciarCart, eliminarCant, vacio, agregarCant, eliminarProd, total } =
     useContext(CartContext);
   return (
     <div class={`z-10 ${isOpen ? "relative" : "hidden"}`}>
@@ -31,7 +32,6 @@ export default function Cart({ isOpen, onClose }) {
                   </button>
                 </div>
               </div>
-
               <div class="mt-8">
                 <div class="flow-root">
                   {cart.length === 0 ? (
@@ -51,25 +51,34 @@ export default function Cart({ isOpen, onClose }) {
                                 <h3>
                                   <a href="#">{item.name}</a>
                                 </h3>
-                                <p class="ml-4">$ {item.price}</p>
+                                <p class="ml-4">
+                                  $ {item.price * (item.cantidad || 1)}
+                                </p>
                               </div>
                             </div>
-                            <div class="flex flex-1 items-end justify-between text-sm">
-                              <p class="text-gray-500">
-                                Unidad: {item.cantidad}
-                              </p>
+                            <div class="flex flex-1 text-xl items-end justify-between">
+                              <div class="flex text-gray-800 items-center space-x-3">
+                                <button
+                                  onClick={() => eliminarCant(item.id)}
+                                  class="cursor-pointer hover:text-black"
+                                >
+                                  <GrFormSubtract />
+                                </button>
+                                <span class="text-gray-400">
+                                  {item.cantidad}
+                                </span>
+                                <button
+                                  onClick={() => agregarCant(item.id)}
+                                  class="cursor-pointer hover:text-black"
+                                >
+                                  <IoMdAdd />
+                                </button>
+                              </div>
                               <div class="flex">
                                 <button
                                   type="button"
-                                  onClick={() => agregarCant(item)}
-                                  class="cursor-pointer font-medium text-2xl text-green-500 hover:text-green-900"
-                                >
-                                  <IoAddCircleSharp />
-                                </button>
-                                <button
-                                  type="button"
-                                  onClick={() => eliminarCant(item)}
-                                  class="cursor-pointer font-medium text-2xl text-red-500 hover:text-red-900"
+                                  onClick={() => eliminarProd(item.id)}
+                                  class="cursor-pointer font-medium text-red-500 hover:text-red-900"
                                 >
                                   <MdDelete />
                                 </button>
@@ -90,7 +99,7 @@ export default function Cart({ isOpen, onClose }) {
                 } justify-between text-base font-medium text-gray-900`}
               >
                 <p>Total a pagar</p>
-                <p>$ 1000</p>
+                <p>$ {total}</p>
               </div>
               <div
                 class={`mt-6 w-full justify-center space-x-6 ${
