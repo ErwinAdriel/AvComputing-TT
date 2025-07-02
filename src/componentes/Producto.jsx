@@ -8,7 +8,7 @@ export default function Producto({ product }) {
 
   return (
     <div
-      class="w-full h-full overflow-hidden shadow-xl/10"
+      class="w-full h-full overflow-hidden transition delay-150 duration-300 ease-in-out hover:-translate-y-5 hover:scale-110 shadow-xl/10"
       key={product.id}
     >
       <Link to={`/productos/${product.id}`}>
