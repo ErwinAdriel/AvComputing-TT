@@ -1,6 +1,12 @@
 import { Link } from "react-router-dom"
+import { useEffect } from "react";
 
 export default function Error(){
+  
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return(
     <div class=" bg-white px-6 py-24 pt-38">
       <title>Error 404 | AvComputing</title>

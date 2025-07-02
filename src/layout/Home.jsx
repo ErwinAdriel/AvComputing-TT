@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ProductList from "../componentes/ProductList";
 import Banner from "../componentes/Banner";
 import Categorias from "../componentes/Categorias";
@@ -7,6 +7,11 @@ import loading from "../img/loading.gif";
 
 export default function Home() {
   const { carga } = useContext(CartContext);
+
+  useEffect(()=>{
+      window.scrollTo(0, 0);
+    }, []);
+
   return (
     <div class="pt-34">
       <Banner />

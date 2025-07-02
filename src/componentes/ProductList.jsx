@@ -4,7 +4,7 @@ import { CartContext } from "../context/CartContext";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 
 export default function ProductList() {
-  const { products, productosFiltrados } = useContext(CartContext);
+  const { productosFiltrados } = useContext(CartContext);
 
   const [currentPage, setCurrentPage] = useState(1);
 

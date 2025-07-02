@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { FaRegEdit } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import { RiAddFill } from "react-icons/ri";
@@ -11,6 +11,10 @@ import EditarProducto from "../componentes/EditarProducto";
 export default function Admin() {
   const {products, isCartOpen, setCartOpen, formEditOpen, setFormEditOpen, seleccionado, setSeleccionado, carga, agregarProducto, eliminarProducto, editarProducto} = useContext(AdminContext);
   
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div className="bg-white mb-10 py-5 lg:px-20 pt-25">
       <title>Dashboard</title>

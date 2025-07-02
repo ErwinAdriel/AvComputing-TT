@@ -1,9 +1,13 @@
-import React from "react";
+import { useEffect } from "react";
 import { FaPhoneVolume } from "react-icons/fa6";
 import { IoMdMail } from "react-icons/io";
 import { SiGooglemaps } from "react-icons/si";
 
 export default function Contacto() {
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div class="bg-white mb-10 py-5 lg:px-20 pt-38 ">
       <title>Contacto | AvComputing</title>

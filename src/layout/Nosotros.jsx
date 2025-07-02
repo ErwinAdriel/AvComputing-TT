@@ -1,7 +1,13 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import nosotros from "../assets/nosotros.jpg";
 
 export default function Nosotros() {
+
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div class="w-full pt-38 pb-5">
       <title>Nosotros | AvComputing</title>

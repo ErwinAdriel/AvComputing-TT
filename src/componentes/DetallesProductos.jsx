@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { IoCartOutline } from "react-icons/io5";
 import Error from "../layout/Error404";
@@ -9,8 +9,12 @@ export default function DetallesProductos() {
   const { id } = useParams();
   const product = products.find((producto) => producto.id == id);
 
+  useEffect(()=>{
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <div className="pt-38">
+    <div className="pt-38 overflow-y-auto">
       {product ? (
         <div className="w-full lg:flex justify-between py-5 lg:px-20">
           <title>{`${product.name} | AvComputing`}</title>

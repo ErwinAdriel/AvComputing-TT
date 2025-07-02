@@ -1,9 +1,13 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 const Login = () => {
   const {email, setEmail, password, setPassword, errors, handleSubmit} = useContext(AuthContext);
   
+  useEffect(()=>{
+      window.scrollTo(0, 0);
+    }, []);
+
   return (
     <div class="pt-50 pb-20">
       <title>Ingresar | AvComputing</title>
