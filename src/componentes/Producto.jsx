@@ -8,7 +8,7 @@ export default function Producto({ product }) {
 
   return (
     <div
-      class="w-full h-full overflow-hidden transition delay-150 duration-300 ease-in-out hover:-translate-y-5 hover:scale-110 shadow-xl/10"
+      class="w-full h-full border-1 rounded-xl border-slate-300 hover:border-slate-900 overflow-hidden transition delay-150 duration-300 ease-in-out "
       key={product.id}
     >
       <Link to={`/productos/${product.id}`}>
@@ -23,9 +23,9 @@ export default function Producto({ product }) {
               {product.name}
             </p>
           </Link>
-          <div class="flex justify-between mt-2 space-x-40 sm:space-x-10">
+          <div class="flex justify-between mt-3 space-x-30 sm:space-x-7">
             <div class="my-auto">
-              <span class="font-bold text-xl sm:text-lg text-center font-600">
+              <span class="font-medium text-xl sm:text-lg text-center font-600">
                 $ {product.price}
               </span>
             </div>
@@ -33,8 +33,8 @@ export default function Producto({ product }) {
               onClick={() => handleAddToCart(product)}
               type="button"
             >
-              <div class="cursor-pointer flex border-1 bg-black text-white py-3 px-5 sm:px-4 space-x-3 text-md ">
-                <span class="my-auto">
+              <div class="cursor-pointer flex bg-slate-400 font-medium text-black py-3 px-5 sm:px-4 space-x-2 text-md ">
+                <span class="my-auto text-xl">
                   <IoCartOutline />
                 </span>
                 <span>Comprar</span>

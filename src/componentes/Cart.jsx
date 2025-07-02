@@ -1,12 +1,11 @@
 import { useContext } from "react";
 import { MdDelete } from "react-icons/md";
-import { IoAddCircleSharp } from "react-icons/io5";
 import { IoMdClose, IoMdAdd } from "react-icons/io";
 import { GrFormSubtract } from "react-icons/gr";
 import { CartContext } from "../context/CartContext";
 
 export default function Cart({ isOpen, onClose }) {
-  const { cart, vaciarCart, eliminarCant, vacio, agregarCant, eliminarProd, total } =
+  const { cart, vaciarCart, eliminarCant, vacio, agregarCant, eliminarProd, total, comprarCart } =
     useContext(CartContext);
   return (
     <div class={`z-10 ${isOpen ? "relative" : "hidden"}`}>
@@ -112,8 +111,9 @@ export default function Cart({ isOpen, onClose }) {
                 >
                   Vaciar
                 </button>
-                <button class="flex items-center cursor-pointer rounded-md border border-transparent bg-slate-900 px-8 py-3 text-base font-medium text-white hover:bg-slate-500">
-                  Comprar
+                <button
+                onClick={()=> comprarCart()} class="flex items-center cursor-pointer rounded-md border border-transparent bg-slate-900 px-8 py-3 text-base font-medium text-white hover:bg-slate-500">
+                  Finalizar compra
                 </button>
               </div>
             </div>

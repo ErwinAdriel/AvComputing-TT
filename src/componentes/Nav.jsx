@@ -79,14 +79,7 @@ export default function Nav() {
                           value={busqueda}
                           onChange={(e) => setBusqueda(e.target.value)}
                         />
-                        <div class="px-4 py-2 flex items-center bg-slate-900 text-white cursor-pointer">
-                          <button
-                            type="submit"
-                            class="text-white text-xl cursor-pointer"
-                          >
-                            <CiSearch />
-                          </button>
-                        </div>
+                        
                       </div>
                     </form>
                   </div>

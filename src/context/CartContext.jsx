@@ -1,6 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { toast } from "react-toastify";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export const CartContext = createContext();
 
@@ -12,6 +13,7 @@ export const CartProvider = ({ children }) => {
   const [error, setError] = useState(false);
   const [isAuthenticated, setIsAuth] = useState(false);
   const [busqueda, setBusqueda] = useState("");
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetch("https://685716ec21f5d3463e54702a.mockapi.io/productos/products")
@@ -128,6 +130,32 @@ export const CartProvider = ({ children }) => {
     0
   );
 
+  const comprarCart = async () => {
+    if (isAuthenticated == false) {
+      const confirm = Swal.fire({
+        title: "",
+        text: "Para finalizar la compra debes iniciar sesion.",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Iniciar sesion",
+        cancelButtonText: "Cancelar",
+      });
+      if ((await confirm).isConfirmed) {
+        navigate("/login");
+      }
+      return;
+    }
+    setCart([]);
+    setVacio(true);
+    Swal.fire({
+      title: "Compra finalizada!",
+      icon: "success",
+      draggable: true,
+    });
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -147,6 +175,7 @@ export const CartProvider = ({ children }) => {
         busqueda,
         setBusqueda,
         total,
+        comprarCart,
       }}
     >
       {children}

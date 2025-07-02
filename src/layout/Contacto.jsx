@@ -15,7 +15,7 @@ export default function Contacto() {
       <div class="w-full mt-8 lg:flex lg:space-x-[30px]">
         <div class="lg:w-1/2 w-full">
           <div class="md:flex md:space-x-[30px] mb-[30px]">
-            <div class="cursor-pointer md:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black p-5 shadow-xl/20">
+            <div class="cursor-pointer md:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black p-5 ">
               <div class="flex justify-center mb-3">
                 <FaPhoneVolume class="text-2xl" />
               </div>
@@ -23,7 +23,7 @@ export default function Contacto() {
               <p class="text-center text-base">+(549) 11 2165 6458</p>
               <p class="text-center text-base">+(549) 11 4960 7280</p>
             </div>
-            <div class="cursor-pointer md:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black mt-8 md:mt-0 shadow-xl/20">
+            <div class="cursor-pointer md:w-1/2 w-full h-[196px] flex flex-col justify-center bg-slate-200 text-black mt-8 md:mt-0">
               <div class="flex justify-center mb-3">
                 <IoMdMail class="text-2xl" />
               </div>
@@ -31,7 +31,7 @@ export default function Contacto() {
               <p class="text-center text-base">adrielquispe87@gmail.com</p>
             </div>
           </div>
-          <div class="cursor-pointer p-5 flex w-full bg-slate-200 text-black shadow-xl/20">
+          <div class="cursor-pointer p-5 flex w-full bg-slate-200 text-black ">
             <div class="flex space-x-5">
               <SiGooglemaps class="text-2xl" />
               <div>
@@ -43,7 +43,7 @@ export default function Contacto() {
             </div>
           </div>
         </div>
-        <div class="flex-1 bg-white sm:p-10 p-3 shadow-2xl">
+        <div class="flex-1 bg-slate-200 text-black sm:p-10 p-3">
           <div class="flex items-center">
             <p class="text-2xl font-semibold">Completar formulario</p>
           </div>
@@ -86,12 +86,12 @@ export default function Contacto() {
               <textarea
                 name="mensaje"
                 id="msg"
-                class="w-full h-[105px] focus:outline-none border border-gray-400 p-6 text-gray-400"
+                class="w-full h-[105px] focus:outline-none border bg-white border-gray-400 p-6 text-gray-400"
               ></textarea>
             </div>
             <button
               type="submit"
-              class="cursor-pointer bg-black text-white text-sm font-semibold w-full h-[50px] flex justify-center items-center"
+              class="cursor-pointer bg-slate-900 text-white text-sm font-semibold w-full h-[50px] flex justify-center items-center"
             >
               <span>Enviar</span>
             </button>
