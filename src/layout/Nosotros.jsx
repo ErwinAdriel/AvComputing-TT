@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import nosotros from "../assets/nosotros.jpg";
 
 export default function Nosotros() {
   useEffect(() => {
@@ -8,7 +7,7 @@ export default function Nosotros() {
   }, []);
 
   return (
-    <div class="w-full pt-41 pb-5 px-20">
+    <div class="w-full pt-41 pb-5 px-5 sm:px-20">
       <title>Nosotros | AvComputing</title>
       <div class="w-full lg:flex lg:space-x-[30px]">
         <div class="lg:w-1/4 mb-8 w-full">

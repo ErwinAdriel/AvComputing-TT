@@ -9,7 +9,7 @@ const Login = () => {
     }, []);
 
   return (
-    <div class="pt-50 pb-20">
+    <div class="pt-50 pb-20 px-5">
       <title>Ingresar | AvComputing</title>
       <div class="flex flex-col items-center justify-center mx-auto">
         <div class="w-full bg-slate-200 border-slate-600 border md:mt-0 sm:max-w-md xl:p-0 text-black">
