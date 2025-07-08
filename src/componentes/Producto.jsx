@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { CartContext } from "../context/CartContext";
 
 export default function Producto({ product }) {
-  const {handleAddToCart} = useContext(CartContext);
+  const { handleAddToCart } = useContext(CartContext);
 
   return (
     <div
-      class="w-full h-full border-1 rounded-xl border-slate-300 hover:border-slate-900 overflow-hidden transition delay-150 duration-300 ease-in-out "
+      class="w-full h-full border-1 rounded-xl border-slate-300 hover:border-slate-900 overflow-hidden transition delay-150 duration-300 ease-in-out"
       key={product.id}
     >
       <Link to={`/productos/${product.id}`}>
@@ -16,31 +16,35 @@ export default function Producto({ product }) {
           <img src={`${product.img}`} alt={product.name} />
         </div>
       </Link>
-      <div class="flex justify-center sm:h-[102px] h-[120px] items-center border-t border-gray-300">
-        <div>
-          <Link to={`/productos/${product.id}`}>
-            <p class="text-lg sm:text-sm text-center text-gray-500  ">
-              {product.name}
-            </p>
-          </Link>
-          <div class="flex justify-between mt-3 space-x-30 sm:space-x-7">
-            <div class="my-auto">
-              <span class="font-medium text-xl sm:text-lg text-center font-600">
-                $ {product.price}
-              </span>
+      <div class="flex-col justify-center items-center border-t border-gray-300">
+        <div class="flex justify-center mt-4">
+          <span class="text-lg sm:text-sm text-slate-800 font-extralight">
+            {product.name}
+          </span>
+        </div>
+        <div class="flex justify-center mt-1">
+          <span class="font-bold text-xl sm:text-lg font-600">
+            $ {product.price}
+          </span>
+        </div>
+        <div class="flex flex-col my-4 space-y-2">
+          <Link to={`/productos/${product.id}`} class="w-[70%] mx-auto">
+            <div class="cursor-pointer flex justify-center bg-slate-300 hover:bg-slate-400 py-1 transition duration-200 ease-in-out">
+              <span>Ver mas</span>
             </div>
-            <button
-              onClick={() => handleAddToCart(product)}
-              type="button"
-            >
-              <div class="cursor-pointer flex bg-slate-400 font-medium text-black py-3 px-5 sm:px-4 space-x-2 text-md ">
-                <span class="my-auto text-xl">
-                  <IoCartOutline />
-                </span>
-                <span>Comprar</span>
-              </div>
-            </button>
-          </div>
+          </Link>
+          <button
+            onClick={() => handleAddToCart(product)}
+            type="button"
+            class="mx-auto w-[70%]"
+          >
+            <div class="cursor-pointer flex justify-center bg-slate-900 text-white hover:bg-slate-950 py-1 space-x-1 transition duration-200 ease-in-out">
+              <span class="my-auto text-xl">
+                <IoCartOutline />
+              </span>
+              <span>Comprar</span>
+            </div>
+          </button>
         </div>
       </div>
     </div>
