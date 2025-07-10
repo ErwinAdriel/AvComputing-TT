@@ -3,7 +3,7 @@ import { FaRegUser } from "react-icons/fa";
 import { MdFavoriteBorder } from "react-icons/md";
 import { IoCartOutline, IoClose } from "react-icons/io5";
 import { IoMdExit } from "react-icons/io";
-import { CiMenuBurger, CiSearch } from "react-icons/ci";
+import { CiMenuBurger } from "react-icons/ci";
 import { Link, NavLink } from "react-router-dom";
 import Cart from "./Cart";
 import { CartContext } from "../context/CartContext";
