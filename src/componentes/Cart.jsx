@@ -46,12 +46,12 @@ export default function Cart({ isOpen, onClose }) {
 
                           <div class="ml-4 flex flex-1 flex-col">
                             <div>
-                              <div class="flex justify-between text-base font-medium text-gray-900">
+                              <div class="flex justify-between text-base font-medium space-x-1 text-gray-900">
                                 <h3>
-                                  <a href="#">{item.name}</a>
+                                  {item.name}
                                 </h3>
-                                <p class="ml-4">
-                                  $ {item.price * (item.cantidad || 1)}
+                                <p class="flex space-x-1">
+                                  <span>$</span><span>{item.price * (item.cantidad || 1)}</span>
                                 </p>
                               </div>
                             </div>

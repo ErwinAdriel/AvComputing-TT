@@ -1,12 +1,15 @@
 import { useContext, useEffect } from "react";
 import { AuthContext } from "../context/AuthContext";
+import { FaUser } from "react-icons/fa";
+import { RiLockPasswordFill } from "react-icons/ri";
 
 const Login = () => {
-  const {email, setEmail, password, setPassword, errors, handleSubmit} = useContext(AuthContext);
-  
-  useEffect(()=>{
-      window.scrollTo(0, 0);
-    }, []);
+  const { email, setEmail, password, setPassword, errors, handleSubmit } =
+    useContext(AuthContext);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   return (
     <div class="pt-50 pb-20 px-5">
@@ -17,43 +20,47 @@ const Login = () => {
             <h1 class="text-xl text-gray-900 font-bold leading-tight md:text-2xl">
               Inicia sesión con tu cuenta
             </h1>
-            <form
-              onSubmit={handleSubmit}
-              class="space-y-4 md:space-y-6"
-            >
-              <div>
+            <form onSubmit={handleSubmit} class="space-y-4 md:space-y-6">
+              <div class="relative mb-1">
+                <span class="absolute flex items-center px-3 h-full text-xl text-slate-900">
+                  <FaUser />
+                </span>
                 <input
                   type="email"
                   name="email"
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  class={`placeholder-gray-400 ${errors.email ? 'border-red-800' : 'border-gray-300'} bg-gray-50 border block w-full p-3`}
-                  placeholder="name@example.com"
+                  class={`placeholder-gray-400 bg-gray-50 border ${
+                    errors.email ? "border-red-800" : "border-gray-300"
+                  } pl-10 w-full p-3`}
                 />
-                {errors.email && (
-                  <div className="text-red-800 font-normal">
-                    <p>{errors.email}</p>
-                  </div>
-                )}
               </div>
-              <div>
-
+              {errors.email && (
+                <div className="text-red-800 font-normal">
+                  <p>{errors.email}</p>
+                </div>
+              )}
+              <div class="relative mb-1">
+                <span class="absolute flex items-center px-3 h-full text-xl text-slate-900">
+                  <RiLockPasswordFill />
+                </span>
                 <input
                   type="password"
                   name="password"
                   id="password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  placeholder="••••••••"
-                  class={`placeholder-gray-400 bg-gray-50 border ${errors.password ? 'border-red-800' : 'border-gray-300'} block w-full p-3`}
+                  class={`placeholder-gray-400 bg-gray-50 border ${
+                    errors.password ? "border-red-800" : "border-gray-300"
+                  } pl-10 w-full p-3`}
                 />
-                {errors.password && (
-                  <div className="text-red-800 font-normal">
-                    <p>{errors.password}</p>
-                  </div>
-                )}
               </div>
+              {errors.password && (
+                <div className="text-red-800 font-normal">
+                  <p>{errors.password}</p>
+                </div>
+              )}
               <div class="flex items-center justify-between">
                 <div class="flex items-start">
                   <div class="flex items-center h-5">
@@ -97,6 +104,6 @@ const Login = () => {
       </div>
     </div>
   );
-}
+};
 
 export default Login;

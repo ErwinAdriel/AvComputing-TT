@@ -30,8 +30,8 @@ export const AuthProvider = ({ children }) => {
     e.preventDefault();
     let validationErrors = {};
 
-    if (!email) validationErrors.email = "Email es requerido";
-    if (!password) validationErrors.password = "La password es requerida";
+    if (!email) validationErrors.email = "email requerido";
+    if (!password) validationErrors.password = "password requerida";
 
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
